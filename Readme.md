@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Dmitrii Belov](https://up.htmlacademy.ru/react/9/user/1649551).
-* Наставник: `Владислав Зубко`.
+* Наставник: [Владислав Зубко](https://htmlacademy.ru/profile/whatislove).
 
 ---
 
