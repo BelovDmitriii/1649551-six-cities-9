@@ -4,6 +4,7 @@ import Favorites from '../favorites/favorites';
 import RoomPage from '../room-page/room-page';
 import MainPage from '../main-page/main-page';
 import SignInPage from '../sign-in-page/sign-in-page';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 type AppScreenProps = {
   rentOffer: number;
@@ -27,6 +28,10 @@ function App({rentOffer}:AppScreenProps): JSX.Element {
         <Route
           path={AppRoute.Room}
           element={<RoomPage />}
+        />
+        <Route
+          path="*"
+          element={<NotFoundPage />}
         />
       </Routes>
     </BrowserRouter>
