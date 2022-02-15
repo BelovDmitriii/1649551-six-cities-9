@@ -1,4 +1,4 @@
-function AuthPage(): JSX.Element {
+function SignInPage(): JSX.Element {
   return (
     <>
       <div style={{display: 'none'}}>
@@ -48,4 +48,4 @@ function AuthPage(): JSX.Element {
   );
 }
 
-export default AuthPage;
+export default SignInPage;
