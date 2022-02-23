@@ -26,7 +26,7 @@ function App({rentOffer}:AppScreenProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AutorizationStatus.NoAuth}
+              authorizationStatus={AutorizationStatus.Auth}
             >
               <Favorites />
             </PrivateRoute>
