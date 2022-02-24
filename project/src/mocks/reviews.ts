@@ -37,5 +37,4 @@ export const reviews: ReviewType[] = [
       'name': 'Oliver.conner',
     },
   },
-
 ];

@@ -6,11 +6,13 @@ import MainPage from '../main-page/main-page';
 import SignInPage from '../sign-in-page/sign-in-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import {OfferType} from '../../types/offer';
 
 type AppScreenProps = {
   rentOffer: number;
+  offers: OfferType;
 }
-function App({rentOffer}:AppScreenProps): JSX.Element {
+function App({rentOffer, offers}:AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
