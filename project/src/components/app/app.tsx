@@ -10,15 +10,17 @@ import {OfferType} from '../../types/offer';
 
 type AppScreenProps = {
   rentOffer: number;
-  offers: OfferType;
+  offers: OfferType[];
+  //reviews: ReviewType[];
 }
 function App({rentOffer, offers}:AppScreenProps): JSX.Element {
+  const [firstOffer] = offers;
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element = {<MainPage rentOffer = {rentOffer} />}
+          element = {<MainPage rentOffer = {rentOffer} offers = {firstOffer}/>}
         />
         <Route
           path={AppRoute.SignIn}
@@ -28,7 +30,7 @@ function App({rentOffer, offers}:AppScreenProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AutorizationStatus.Auth}
+              authorizationStatus={AutorizationStatus.NoAuth}
             >
               <Favorites />
             </PrivateRoute>

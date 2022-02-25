@@ -33,12 +33,13 @@ export const offers: OfferType[] = [
       'zoom': 8,
     },
     'maxAdults': 4,
-    'previewImage': 'img/1.png',
-    'price': 120,
+    'previewImage': 'img/apartment-02.jpg',
+    'price': 10000,
     'rating': 4.8,
     'title': 'Beautiful & luxurious studio at great location',
     'type': 'apartment',
   },
+
   {
     'bedrooms': 4,
     'city': {
@@ -77,6 +78,7 @@ export const offers: OfferType[] = [
     'title': 'Nice, cozy, warm big bed apartment',
     'type': 'apartment',
   },
+
   {
     'bedrooms': 2,
     'city': {
@@ -115,6 +117,7 @@ export const offers: OfferType[] = [
     'title': 'These hotels are regarded perfect all over the world.',
     'type': 'hotel',
   },
+
   {
     'bedrooms': 8,
     'city': {
