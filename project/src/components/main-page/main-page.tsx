@@ -1,11 +1,11 @@
 import Header from '../header/header';
-import PlaceCard from '../place-card/place-card';
 import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offer';
+import PlaceCardList from '../place-card-list/place-card-list';
 
 type MainPageProps = {
   rentOffer: number;
-  offers: OfferType;
+  offers: OfferType[];
 }
 
 function MainPage({rentOffer, offers}:MainPageProps): JSX.Element {
@@ -77,12 +77,7 @@ function MainPage({rentOffer, offers}:MainPageProps): JSX.Element {
                   </ul>
                 </form>
                 <div className="cities__places-list places__list tabs__content">
-                  <PlaceCard offers={offers}/>
-                  <PlaceCard offers={offers}/>
-                  <PlaceCard offers={offers}/>
-                  <PlaceCard offers={offers}/>
-                  <PlaceCard offers={offers}/>
-                  <PlaceCard offers={offers}/>
+                  <PlaceCardList offers = {offers} />
                 </div>
               </section>
               <div className="cities__right-section">

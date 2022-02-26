@@ -37,7 +37,7 @@ export const offers: OfferType[] = [
     'price': 10000,
     'rating': 4.8,
     'title': 'Beautiful & luxurious studio at great location',
-    'type': 'apartment',
+    'type': 'Apartment',
   },
 
   {
@@ -60,7 +60,7 @@ export const offers: OfferType[] = [
       'isPro': true,
       'name': 'Angelina',
     },
-    'id': 1,
+    'id': 2,
     'images': [
       'img/1.png',
     ],
@@ -72,7 +72,7 @@ export const offers: OfferType[] = [
       'zoom': 8,
     },
     'maxAdults': 3,
-    'previewImage': 'img/1.png',
+    'previewImage': 'img/apartment-02.jpg',
     'price': 160,
     'rating': 4.4,
     'title': 'Nice, cozy, warm big bed apartment',
@@ -99,7 +99,7 @@ export const offers: OfferType[] = [
       'isPro': false,
       'name': 'Mark',
     },
-    'id': 1,
+    'id': 3,
     'images': [
       'img/1.png',
     ],
@@ -111,7 +111,7 @@ export const offers: OfferType[] = [
       'zoom': 8,
     },
     'maxAdults': 1,
-    'previewImage': 'img/1.png',
+    'previewImage': 'img/apartment-01.jpg',
     'price': 220,
     'rating': 4.3,
     'title': 'These hotels are regarded perfect all over the world.',
@@ -138,7 +138,7 @@ export const offers: OfferType[] = [
       'isPro': true,
       'name': 'Dmitrii',
     },
-    'id': 1,
+    'id': 4,
     'images': [
       'img/1.png',
     ],
@@ -150,7 +150,7 @@ export const offers: OfferType[] = [
       'zoom': 8,
     },
     'maxAdults': 4,
-    'previewImage': 'img/1.png',
+    'previewImage': 'img/apartment-03.jpg',
     'price': 120,
     'rating': 4.8,
     'title': 'Bright 3 room apartment for up to 6 people',

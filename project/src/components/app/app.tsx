@@ -14,13 +14,12 @@ type AppScreenProps = {
   //reviews: ReviewType[];
 }
 function App({rentOffer, offers}:AppScreenProps): JSX.Element {
-  const [firstOffer] = offers;
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element = {<MainPage rentOffer = {rentOffer} offers = {firstOffer}/>}
+          element = {<MainPage rentOffer = {rentOffer} offers = {offers}/>}
         />
         <Route
           path={AppRoute.SignIn}
