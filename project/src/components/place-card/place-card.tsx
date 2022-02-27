@@ -9,7 +9,7 @@ type PlaceCardProps = {
 
 function PlaceCard (props: PlaceCardProps): JSX.Element {
   const {offers, onActiveOfferChange} = props;
-  const {previewImage, title, price, rating, description, type, id} = offers;
+  const {previewImage, title, price, rating, type, id, isPremium} = offers;
 
   return (
     <article
@@ -17,7 +17,7 @@ function PlaceCard (props: PlaceCardProps): JSX.Element {
       onMouseOver = {() => onActiveOfferChange(offers)}
       onMouseOut = {() => onActiveOfferChange(null)}
     >
-      {offers.isPremium && (
+      {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -47,7 +47,7 @@ function PlaceCard (props: PlaceCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to ={`${AppRoute.Offer}/${offers.id}`}>{description}</Link>
+          <Link to ={`${AppRoute.Offer}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

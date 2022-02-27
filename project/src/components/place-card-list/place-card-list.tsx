@@ -8,7 +8,10 @@ type PlaceCardListProps = {
 
 function PlaceCardList({offers}: PlaceCardListProps): JSX.Element {
 
-  const [, setActiveOffer] = useState(null);
+  const [activeOffer, setActiveOffer] = useState<null | OfferType>(null);
+
+  //eslint-disable-next-line  no-console
+  console.log(activeOffer);
 
   const onActiveOfferChange = (offer:OfferType | null) => {
     setActiveOffer(offer);
