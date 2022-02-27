@@ -2,21 +2,19 @@ import {Link} from 'react-router-dom';
 import {OfferType, ReviewType} from '../../types/offer';
 import Header from '../header/header';
 //import OfferGalleryList from '../offer-gallery-list/offer-gallery-list';
-import {useState} from 'react';
 import ReviewList from '../review-list/review-list';
+import ReviewForm from '../review-form/review-form';
 
 type PlaceCardScreenProps = {
-  offers: OfferType;
+  offers: OfferType[];
   reviews: ReviewType[];
 }
 
-
 function PlaceCardScreen({offers, reviews}:PlaceCardScreenProps): JSX.Element {
 
-  const { price, title, maxAdults, bedrooms, type, rating } = offers;
+  const currentOffer = offers[1];
 
-  const [offer, setOffer] = useState(null);
-  setOffer(offer);
+  const { price, title, maxAdults, bedrooms, type, rating } = currentOffer;
 
   return (
     <div className="page">
@@ -29,7 +27,7 @@ function PlaceCardScreen({offers, reviews}:PlaceCardScreenProps): JSX.Element {
             <div className="property__gallery">
               <div className="property__image-wrapper">
                 {
-                  offers.images.map((img) => (
+                  currentOffer.images.map((img) => (
                     <img key={img}
                       className="property__image"
                       src={img}
@@ -43,7 +41,7 @@ function PlaceCardScreen({offers, reviews}:PlaceCardScreenProps): JSX.Element {
 
           <div className="property__container container">
             <div className="property__wrapper">
-              {offers.isPremium && (
+              {currentOffer.isPremium && (
                 <div className="property__mark">
                   <span>Premium</span>
                 </div>
@@ -85,7 +83,7 @@ function PlaceCardScreen({offers, reviews}:PlaceCardScreenProps): JSX.Element {
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
                   {
-                    offers.goods.map((insides) => (
+                    currentOffer.goods.map((insides) => (
                       <li key={insides} className="property__inside-item">
                         {insides}
                       </li>
@@ -119,6 +117,7 @@ function PlaceCardScreen({offers, reviews}:PlaceCardScreenProps): JSX.Element {
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
                 <ReviewList reviews={reviews} />
+                <ReviewForm />
 
               </section>
             </div>

@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 
 function ReviewForm():JSX.Element {
 
   const [formData, setFormData] = useState('');
 
-  const onClickSubmit = ({target}) => {
-    setFormData(target.value);
+  const onClickSubmit = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData(evt.target.value);
   };
 
   return (

@@ -1,11 +1,12 @@
 type OfferGalleryItemProps = {
-  imageCard:string;
+  imageCard:string[];
 }
 
 function OfferGalleryItem ({imageCard}:OfferGalleryItemProps): JSX.Element {
+  const currentImage = imageCard[0];
   return (
     <div className="property__image-wrapper">
-      <img className="property__image" src={imageCard} alt="Studio" />
+      <img className="property__image" src={currentImage} alt="Studio" />
     </div>
   );
 }

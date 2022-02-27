@@ -1,7 +1,7 @@
 import OfferGalleryItem from '../offer-gallery-item/offer-gallery-item';
 
 type OfferGalleryListProps = {
-  imageCard:string;
+  imageCard:string[];
 }
 
 function OfferGalleryList ({imageCard}:OfferGalleryListProps):JSX.Element {
