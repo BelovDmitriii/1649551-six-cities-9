@@ -1,20 +1,36 @@
 import {Link} from 'react-router-dom';
+import {OfferType} from '../../types/offer';
+import {AppRoute} from '../../const';
 
-function PlaceCard (): JSX.Element {
+type PlaceCardProps = {
+  offers: OfferType;
+  onActiveOfferChange: (offer: OfferType | null) => void;
+}
+
+function PlaceCard (props: PlaceCardProps): JSX.Element {
+  const {offers, onActiveOfferChange} = props;
+  const {previewImage, title, price, rating, type, id, isPremium} = offers;
+
   return (
-    <article className="cities__place-card place-card">
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+    <article
+      className="cities__place-card place-card"
+      onMouseOver = {() => onActiveOfferChange(offers)}
+      onMouseOut = {() => onActiveOfferChange(null)}
+    >
+      {isPremium && (
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to="/">
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place card" />
+        <Link to={`${AppRoute.Offer}/${id}`}>
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt={title} />
         </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;120</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
@@ -27,13 +43,13 @@ function PlaceCard (): JSX.Element {
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
             <span style={{width: '80%'}}></span>
-            <span className="visually-hidden">Rating</span>
+            <span className="visually-hidden">{rating}</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to="/">Beautiful &amp; luxurious apartment at great location</Link>
+          <Link to ={`${AppRoute.Offer}/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );

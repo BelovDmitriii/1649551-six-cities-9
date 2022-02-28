@@ -1,22 +1,25 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute, AutorizationStatus } from '../../const';
-import Favorites from '../favorites/favorites';
-import RoomPage from '../room-page/room-page';
+import PlaceCardScreen from '../place-card-screen/place-card-screen';
 import MainPage from '../main-page/main-page';
 import SignInPage from '../sign-in-page/sign-in-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import {OfferType, ReviewType} from '../../types/offer';
+import FavoritesScreen from '../favorites-screen/favorites-screen';
 
 type AppScreenProps = {
   rentOffer: number;
+  offers: OfferType[];
+  reviews: ReviewType[];
 }
-function App({rentOffer}:AppScreenProps): JSX.Element {
+function App({rentOffer, offers, reviews}:AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element = {<MainPage rentOffer = {rentOffer} />}
+          element = {<MainPage rentOffer = {rentOffer} offers = {offers}/>}
         />
         <Route
           path={AppRoute.SignIn}
@@ -26,15 +29,15 @@ function App({rentOffer}:AppScreenProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AutorizationStatus.NoAuth}
+              authorizationStatus={AutorizationStatus.Auth}
             >
-              <Favorites />
+              <FavoritesScreen offers={offers} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Room}
-          element={<RoomPage />}
+          element={<PlaceCardScreen offers={offers} reviews={reviews} />}
         />
         <Route
           path="*"
