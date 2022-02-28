@@ -8,10 +8,7 @@ type PlaceCardListProps = {
 
 function PlaceCardList({offers}: PlaceCardListProps): JSX.Element {
 
-  const [activeOffer, setActiveOffer] = useState<null | OfferType>(null);
-
-  //eslint-disable-next-line  no-console
-  console.log(activeOffer);
+  const [, setActiveOffer] = useState<null | OfferType>(null);
 
   const onActiveOfferChange = (offer:OfferType | null) => {
     setActiveOffer(offer);
@@ -22,8 +19,8 @@ function PlaceCardList({offers}: PlaceCardListProps): JSX.Element {
       {offers.map((offer) => (
         <PlaceCard
           offers={offer}
-          onActiveOfferChange = {onActiveOfferChange}
-          key = {offer.id}
+          onActiveOfferChange={onActiveOfferChange}
+          key={offer.id}
         />
       ))}
     </>

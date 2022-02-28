@@ -1,7 +1,6 @@
 import {Link} from 'react-router-dom';
 import {OfferType, ReviewType} from '../../types/offer';
 import Header from '../header/header';
-//import OfferGalleryList from '../offer-gallery-list/offer-gallery-list';
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
 
@@ -12,7 +11,7 @@ type PlaceCardScreenProps = {
 
 function PlaceCardScreen({offers, reviews}:PlaceCardScreenProps): JSX.Element {
 
-  const currentOffer = offers[1];
+  const [currentOffer] = offers;
 
   const { price, title, maxAdults, bedrooms, type, rating } = currentOffer;
 
