@@ -17,7 +17,7 @@ export const offers: OfferType[] = [
     ],
     'host': {
       'avatarUrl': 'img/avatar-max.jpg',
-      'id': 3,
+      'id': 1,
       'isPro': true,
       'name': 'Angelina',
     },
@@ -32,8 +32,8 @@ export const offers: OfferType[] = [
     'isFavorite': false,
     'isPremium': false,
     'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
+      'latitude': 52.3909553943508,
+      'longitude': 4.85309666406198,
       'zoom': 8,
     },
     'maxAdults': 4,
@@ -48,11 +48,11 @@ export const offers: OfferType[] = [
     'bedrooms': 4,
     'city': {
       'location': {
-        'latitude': 47.492653,
-        'longitude': 19.051408,
+        'latitude': 52.370216,
+        'longitude': 4.895168,
         'zoom': 10,
       },
-      'name': 'Brussels',
+      'name': 'Amsterdam',
     },
     'description': 'This five-star hotel with friendly staff who speaks several languages, including Russian and English.',
     'goods': [
@@ -74,8 +74,8 @@ export const offers: OfferType[] = [
     'isFavorite': true,
     'isPremium': false,
     'location': {
-      'latitude': 47.492653,
-      'longitude': 19.051408,
+      'latitude': 52.369553943508,
+      'longitude': 4.85309666406198,
       'zoom': 8,
     },
     'maxAdults': 3,
@@ -90,11 +90,11 @@ export const offers: OfferType[] = [
     'bedrooms': 2,
     'city': {
       'location': {
-        'latitude': 48.856663,
-        'longitude': 2.351556,
+        'latitude': 52.370216,
+        'longitude': 4.895168,
         'zoom': 10,
       },
-      'name': 'Paris',
+      'name': 'Amsterdam',
     },
     'description': 'It is a fifteen storey building, which is located in the centre of Paris. The hotel has 100 rooms.',
     'goods': [
@@ -113,8 +113,8 @@ export const offers: OfferType[] = [
     'isFavorite': true,
     'isPremium': false,
     'location': {
-      'latitude': 48.856663,
-      'longitude': 2.351556,
+      'latitude': 52.3909553943508,
+      'longitude': 4.929309666406198,
       'zoom': 8,
     },
     'maxAdults': 1,
@@ -129,11 +129,11 @@ export const offers: OfferType[] = [
     'bedrooms': 8,
     'city': {
       'location': {
-        'latitude': 52.518621,
-        'longitude': 13.375142,
+        'latitude': 52.370216,
+        'longitude': 4.895168,
         'zoom': 10,
       },
-      'name': 'Berlin',
+      'name': 'Amsterdam',
     },
     'description': 'The kitchen is small, but, as I said before, quite cozy. The biggest room in the apartment is the living room.',
     'goods': [
@@ -152,8 +152,8 @@ export const offers: OfferType[] = [
     'isFavorite': true,
     'isPremium': false,
     'location': {
-      'latitude': 52.518621,
-      'longitude': 13.375142,
+      'latitude': 52.3809553943508,
+      'longitude':4.939309666406198,
       'zoom': 8,
     },
     'maxAdults': 4,
