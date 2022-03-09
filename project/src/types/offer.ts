@@ -1,12 +1,12 @@
 export type OfferType = {
   bedrooms: number,
-  city: {
+  city:{
     location: {
-      latitude: number
-      longitude: number
-      zoom: number
+      latitude: number;
+      longitude: number;
+      zoom: number;
     },
-    name: string
+    name: string,
   },
   description: string,
   goods: [string],
@@ -28,9 +28,9 @@ export type OfferType = {
   maxAdults: number,
   previewImage: string,
   price: number,
-  rating: number,
-  title: string,
-  type: string
+  rating: number;
+  title: string;
+  type: string;
 };
 
 export type ReviewType = {

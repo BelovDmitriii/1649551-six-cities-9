@@ -19,7 +19,7 @@ function App({rentOffer, offers, reviews}:AppScreenProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage rentOffer={rentOffer} offers={offers}/>}
+          element={<MainPage rentOffer={rentOffer} offers={offers} />}
         />
         <Route
           path={AppRoute.SignIn}
