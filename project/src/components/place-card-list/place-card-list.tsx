@@ -1,10 +1,9 @@
 import PlaceCard from '../place-card/place-card';
 import { OfferType } from '../../types/offer';
-//import { useState } from 'react';
 
 type PlaceCardListProps = {
   offers: OfferType[];
-  onPlaceCardHover: (id: number) => void;
+  onPlaceCardHover: (offer: OfferType | null) => void;
 }
 
 function PlaceCardList({offers, onPlaceCardHover}: PlaceCardListProps): JSX.Element {

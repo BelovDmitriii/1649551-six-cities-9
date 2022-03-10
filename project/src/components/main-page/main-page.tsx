@@ -14,10 +14,8 @@ type MainPageProps = {
 function MainPage({rentOffer, offers}:MainPageProps): JSX.Element {
   const [selectedPoint, setSelectedPoint] = useState<OfferType | null>(null);
 
-  const onPlaceCardHover = (id: number) => {
-    const selectedId = offers.find((offer) => offer.id === id) ?? null;
-
-    setSelectedPoint(selectedId);
+  const onPlaceCardHover = (offer: OfferType | null) => {
+    setSelectedPoint(offer);
   };
 
   return (

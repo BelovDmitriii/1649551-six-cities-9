@@ -4,7 +4,7 @@ import {AppRoute} from '../../const';
 
 type PlaceCardProps = {
   offers: OfferType;
-  onPlaceCardHover: (id: number) => void;
+  onPlaceCardHover: (offer: OfferType | null) => void;
 }
 
 function PlaceCard (props: PlaceCardProps): JSX.Element {
@@ -14,7 +14,8 @@ function PlaceCard (props: PlaceCardProps): JSX.Element {
   return (
     <article
       className="cities__place-card place-card"
-      onMouseOver = {() => onPlaceCardHover(id)}
+      onMouseOver = {() => onPlaceCardHover(offers)}
+      onMouseOut = {() => onPlaceCardHover(null)}
     >
       {isPremium && (
         <div className="place-card__mark">

@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
 import {OfferType, ReviewType} from '../../types/offer';
 import Header from '../header/header';
-import ReviewList from '../review-list/review-list';
-import ReviewForm from '../review-form/review-form';
+import ReviewList from '../review-list/reviews-list';
+import ReviewForm from '../review-form/reviews-form';
 
 type PlaceCardScreenProps = {
   offers: OfferType[];
