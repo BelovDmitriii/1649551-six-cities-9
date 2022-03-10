@@ -9,7 +9,7 @@ export type OfferType = {
     name: string,
   },
   description: string,
-  goods: [string],
+  goods: string[],
   host: {
     avatarUrl: string
     id: number

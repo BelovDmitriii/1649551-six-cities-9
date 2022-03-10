@@ -9,7 +9,7 @@ import useMap from '../../hooks/useMap';
 type MapProps = {
   city: City;
   points: OfferType[];
-  selectedPoint: OfferType | undefined;
+  selectedPoint: OfferType | null;
 }
 
 const defaultCustomIcon = new Icon({
@@ -33,11 +33,11 @@ function Map({city, points, selectedPoint}:MapProps) {
       points.forEach((point) => {
         const marker = new Marker(
           {
-            lat: point.city.location.latitude,
-            lng: point.city.location.longitude,
+            lat: point.location.latitude,
+            lng: point.location.longitude,
           });
         marker.setIcon(
-          selectedPoint !== undefined && point.title === selectedPoint.title
+          selectedPoint !== null && point.title === selectedPoint.title
             ? currentCustomIcon
             : defaultCustomIcon,
         ).addTo(map);

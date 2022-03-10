@@ -5,18 +5,16 @@ import {AppRoute} from '../../const';
 type PlaceCardProps = {
   offers: OfferType;
   onPlaceCardHover: (id: number) => void;
-  onActiveOfferChange: (offer: OfferType | null) => void;
 }
 
 function PlaceCard (props: PlaceCardProps): JSX.Element {
-  const {offers, onActiveOfferChange, onPlaceCardHover} = props;
+  const {offers, onPlaceCardHover} = props;
   const {previewImage, title, price, rating, type, id, isPremium} = offers;
 
   return (
     <article
       className="cities__place-card place-card"
-      onMouseOver = {() => {onActiveOfferChange(offers); onPlaceCardHover(id);}}
-      onMouseOut = {() => onActiveOfferChange(null)}
+      onMouseOver = {() => onPlaceCardHover(id)}
     >
       {isPremium && (
         <div className="place-card__mark">
