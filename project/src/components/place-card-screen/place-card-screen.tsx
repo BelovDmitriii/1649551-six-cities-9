@@ -1,4 +1,3 @@
-//import {Link} from 'react-router-dom';
 import {OfferType, ReviewType} from '../../types/offer';
 import Header from '../header/header';
 import CardProperty from '../place-card-property/place-card-property';

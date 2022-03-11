@@ -12,7 +12,7 @@ export const nearbyOffers: OfferType[] = [
       },
       name: 'Amsterdam',
     },
-    description: 'Not so bad',
+    description: 'Beautiful & luxurious studio at great location',
     goods: [
       'Heating',
       'Baby seat',
@@ -47,7 +47,7 @@ export const nearbyOffers: OfferType[] = [
     previewImage: 'img/apartment-02.jpg',
     price: 5000,
     rating: 4.8,
-    title: 'Beautiful & luxurious studio at great location',
+    title: 'Not so bad',
     type: 'Apartment',
   },
 
@@ -61,7 +61,7 @@ export const nearbyOffers: OfferType[] = [
       },
       name: 'Brussels',
     },
-    description: 'The place in Amsterdam was better! There is no bathroom here!!!',
+    description: 'Nice, cozy, warm big bed apartment',
     goods: [
       'Air conditioning',
       'Washer',
@@ -94,7 +94,7 @@ export const nearbyOffers: OfferType[] = [
     previewImage: 'img/apartment-04.jpg',
     price: 15000,
     rating: 4.4,
-    title: 'Nice, cozy, warm big bed apartment',
+    title: 'The place in Amsterdam was better! There is no bathroom here!!!',
     type: 'apartment',
   },
 
@@ -108,7 +108,7 @@ export const nearbyOffers: OfferType[] = [
       },
       name: 'Paris',
     },
-    description: 'Very small room in center of Paris!',
+    description: 'These hotels are regarded perfect all over the world.',
     goods: [
       'Heating',
       'Coffee machine',
@@ -144,7 +144,7 @@ export const nearbyOffers: OfferType[] = [
     previewImage: 'img/apartment-01.jpg',
     price: 25000,
     rating: 4.3,
-    title: 'These hotels are regarded perfect all over the world.',
+    title: 'Very small room in center of Paris!',
     type: 'hotel',
   },
 
@@ -158,7 +158,7 @@ export const nearbyOffers: OfferType[] = [
       },
       name: 'Hamburg',
     },
-    description: 'The best location in the city! - this is not for this place!!!',
+    description: 'Bright 2 room apartment for up to 5 people',
     goods: [
       'Heating',
       'Coffee machine',
@@ -192,7 +192,7 @@ export const nearbyOffers: OfferType[] = [
     previewImage: 'img/apartment-03.jpg',
     price: 35000,
     rating: 4.8,
-    title: 'Bright 2 room apartment for up to 5 people',
+    title: 'The best location in the city! - this is not for this place!!!',
     type: 'apartment',
   },
 ];
