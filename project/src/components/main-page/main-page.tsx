@@ -2,7 +2,6 @@ import Header from '../header/header';
 import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offer';
 import PlaceCardList from '../place-card-list/place-card-list';
-import { CITY } from '../../mocks/city';
 import Map from '../map/map';
 import {useState} from 'react';
 
@@ -91,7 +90,7 @@ function MainPage({rentOffer, offers}:MainPageProps): JSX.Element {
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map city={CITY} points={offers} selectedPoint={selectedPoint} />
+                  <Map city={offers[0].city} points={offers} selectedPoint={selectedPoint} />
                 </section>
               </div>
             </div>

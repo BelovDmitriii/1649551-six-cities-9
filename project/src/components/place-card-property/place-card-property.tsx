@@ -1,6 +1,7 @@
 import { OfferType, ReviewType } from '../../types/offer';
 import ReviewList from '../review-list/reviews-list';
 import ReviewForm from '../review-form/reviews-form';
+import Map from '../map/map';
 
 type CardPropertyProps = {
   offers: OfferType[];
@@ -122,7 +123,9 @@ function CardProperty({offers, reviews}: CardPropertyProps):JSX.Element {
           </section>
         </div>
       </div>
-      <section className="property__map map"></section>
+      <section className="property__map map" style={{margin: '0 auto', width: '80%', background:'none'}}>
+        <Map city={currentOffer.city} points={offers} selectedPoint={currentOffer}/>
+      </section>
     </section>
   );
 }

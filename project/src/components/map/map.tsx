@@ -2,8 +2,7 @@ import {Icon, Marker} from 'leaflet';
 import { useRef, useEffect } from 'react';
 import { URL_MARKER_DEFAULT,URL_MARKER_CURRENT, ICON_WIDTH, ICON_HEIGHT, ANCHOR_RELATIVE_X, ANCHOR_RELATIVE_Y } from '../../const';
 import 'leaflet/dist/leaflet.css';
-import {City} from '../../types/types';
-import {OfferType} from '../../types/offer';
+import {OfferType, City} from '../../types/offer';
 import useMap from '../../hooks/useMap';
 
 type MapProps = {
@@ -33,11 +32,11 @@ function Map({city, points, selectedPoint}:MapProps) {
       points.forEach((point) => {
         const marker = new Marker(
           {
-            lat: point.location.latitude,
-            lng: point.location.longitude,
+            lat: point.city.location.latitude,
+            lng: point.city.location.longitude,
           });
         marker.setIcon(
-          selectedPoint !== null && point.title === selectedPoint.title
+          selectedPoint !== null && point.id === selectedPoint.id
             ? currentCustomIcon
             : defaultCustomIcon,
         ).addTo(map);
