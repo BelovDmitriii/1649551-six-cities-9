@@ -7,9 +7,10 @@ import Map from '../map/map';
 type CardPropertyProps = {
   offers: OfferType[];
   reviews: ReviewType[];
+  selectedPoint: OfferType | null;
 };
 
-function CardProperty({offers, reviews}: CardPropertyProps):JSX.Element {
+function CardProperty({offers, reviews, selectedPoint}: CardPropertyProps):JSX.Element {
 
   const [currentOffer] = offers;
 
@@ -111,7 +112,7 @@ function CardProperty({offers, reviews}: CardPropertyProps):JSX.Element {
         </div>
       </div>
       <section className="property__map map" style={{margin: '0 auto', width: '80%', background:'none'}}>
-        <Map city={currentOffer.city} points={offers} selectedPoint={currentOffer}/>
+        <Map city={currentOffer.city} points={offers} selectedPoint={selectedPoint}/>
       </section>
     </section>
   );
