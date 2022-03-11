@@ -12,7 +12,7 @@ function PlaceCardList({offers, onPlaceCardHover}: PlaceCardListProps): JSX.Elem
     <>
       {offers.map((offer, id) => (
         <PlaceCard
-          offers={offer}
+          offer={offer}
           onPlaceCardHover={onPlaceCardHover}
           key={offer.id}
         />
