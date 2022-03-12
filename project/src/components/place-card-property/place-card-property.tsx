@@ -1,37 +1,25 @@
 import { OfferType, ReviewType } from '../../types/offer';
 import ReviewList from '../review-list/reviews-list';
 import ReviewForm from '../review-form/reviews-form';
+import PlaceCardGallery from '../place-card-gallery/place-card-gallery';
 import Map from '../map/map';
 
 type CardPropertyProps = {
   offers: OfferType[];
   reviews: ReviewType[];
+  selectedPoint: OfferType | null;
 };
 
-const MAX_PHOTOS = 6;
-
-function CardProperty({offers, reviews}: CardPropertyProps):JSX.Element {
+function CardProperty({offers, reviews, selectedPoint}: CardPropertyProps):JSX.Element {
 
   const [currentOffer] = offers;
 
-  const {images, title, isFavorite, isPremium, rating, type, bedrooms, maxAdults, price, goods, description} = currentOffer;
+  const { title, isFavorite, isPremium, rating, type, bedrooms, maxAdults, price, goods, description} = currentOffer;
 
   return (
     <section className="property">
-      <div className="property__gallery-container container">
-        <div className="property__gallery">
-          {
-            images.map((imageUrl: string , id: number) => {
-              const keyValue = id + imageUrl;
-              return id < MAX_PHOTOS ? (
-                <div key = {keyValue} className="property__image-wrapper">
-                  <img className="property__image" src={imageUrl} alt="Photo"/>
-                </div>
-              ) : ('');
-            })
-          }
-        </div>
-      </div>
+
+      <PlaceCardGallery offer = {currentOffer} />
 
       <div className="property__container container">
         <div className="property__wrapper">
@@ -124,7 +112,7 @@ function CardProperty({offers, reviews}: CardPropertyProps):JSX.Element {
         </div>
       </div>
       <section className="property__map map" style={{margin: '0 auto', width: '80%', background:'none'}}>
-        <Map city={currentOffer.city} points={offers} selectedPoint={currentOffer}/>
+        <Map city={currentOffer.city} points={offers} selectedPoint={selectedPoint}/>
       </section>
     </section>
   );
