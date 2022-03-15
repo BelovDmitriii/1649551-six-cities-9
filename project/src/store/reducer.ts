@@ -1,9 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity } from './action';
 import { INITIAL_CITY } from '../const';
+import { offers } from '../mocks/offers';
 
 const initialState = {
   currentCity: INITIAL_CITY,
+  offers: offers,
 };
 
 const reducer = createReducer(initialState, (builder) => {
