@@ -10,14 +10,17 @@ type LocationItemProps = {
 
 function LocationItem({city, activeCity}:LocationItemProps): JSX.Element {
 
-  const isActive = city.name === activeCity.name ? 'tabs__item--active' : '';
+  const { name } = city;
+
+  const isActive = name === activeCity.name ? 'tabs__item--active' : '';
   const dispatch = useAppDispatch();
+
   return (
     <li className="locations__item">
-      <Link className={`{locations__item-link tabs__item} ${isActive}`} to='/'
-        onClick={() => dispatch(changeCity( city ))}
+      <Link className={`locations__item-link tabs__item ${isActive}`} to='/'
+        onClick={() => dispatch(changeCity({ city }))}
       >
-        <span>{city.name}</span>
+        <span>{name}</span>
       </Link>
     </li>
   );

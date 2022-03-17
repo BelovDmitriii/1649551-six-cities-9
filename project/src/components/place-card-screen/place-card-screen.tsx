@@ -3,6 +3,7 @@ import Header from '../header/header';
 import CardProperty from '../place-card-property/place-card-property';
 import PlaceCardList from '../place-card-list/place-card-list';
 import {useState} from 'react';
+import { useAppSelector } from '../../hooks';
 
 type PlaceCardScreenProps = {
   offers: OfferType[];
@@ -18,6 +19,8 @@ function PlaceCardScreen({offers, reviews, nearbyOffers}:PlaceCardScreenProps): 
     setSelectedPoint(offer);
   };
 
+  const {filteredOffers} = useAppSelector((state) => state);
+
   return (
     <div className="page">
       <Header />
@@ -28,7 +31,7 @@ function PlaceCardScreen({offers, reviews, nearbyOffers}:PlaceCardScreenProps): 
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
 
-              <PlaceCardList offers={nearbyOffers} onPlaceCardHover={onPlaceCardHover}/>
+              <PlaceCardList offers={filteredOffers} onPlaceCardHover={onPlaceCardHover}/>
 
             </div>
           </section>

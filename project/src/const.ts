@@ -25,8 +25,8 @@ export const CITIES = [
   {
     name: 'Paris',
     location: {
-      latitude: 52.369553943508,
-      longitude: 4.85309666406198,
+      latitude: 48.857747,
+      longitude: 2.294513,
       zoom: 10,
     },
   },
