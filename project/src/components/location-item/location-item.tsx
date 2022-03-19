@@ -18,7 +18,7 @@ function LocationItem({city, activeCity}:LocationItemProps): JSX.Element {
   return (
     <li className="locations__item">
       <Link className={`locations__item-link tabs__item ${isActive}`} to='/'
-        onClick={() => dispatch(changeCity({ city }))}
+        onClick={() => dispatch(changeCity(city))}
       >
         <span>{name}</span>
       </Link>

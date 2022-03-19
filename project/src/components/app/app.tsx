@@ -5,15 +5,9 @@ import MainPage from '../main-page/main-page';
 import SignInPage from '../sign-in-page/sign-in-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import {OfferType, ReviewType} from '../../types/offer';
 import FavoritesScreen from '../favorites-screen/favorites-screen';
 
-type AppScreenProps = {
-  offers: OfferType[];
-  reviews: ReviewType[];
-  nearbyOffers: OfferType[];
-}
-function App({ offers, reviews, nearbyOffers}:AppScreenProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -31,13 +25,13 @@ function App({ offers, reviews, nearbyOffers}:AppScreenProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AutorizationStatus.Auth}
             >
-              <FavoritesScreen offers={offers} />
+              <FavoritesScreen />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Room}
-          element={<PlaceCardScreen offers={offers} reviews={reviews} nearbyOffers={nearbyOffers} />}
+          element={<PlaceCardScreen />}
         />
         <Route
           path="*"
