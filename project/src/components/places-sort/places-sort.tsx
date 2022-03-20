@@ -26,14 +26,14 @@ function PlacesSort({sortType}: PlacesSortProps):JSX.Element {
         </svg>
       </span>
       <ul className="places__options places__options--custom places__options--closed">
-        {sortingType.map((type) => {
+        {sortingType.map((type) => (
           <PlacesSortOption
             activeOption={sortType}
             key={type}
             option={type}
             toggleSortType={toggleSortType}
-          />;
-        })}
+          />
+        ))}
       </ul>
     </form>
   );
