@@ -114,7 +114,7 @@ function CardProperty({offers, selectedPoint}: CardPropertyProps):JSX.Element {
         </div>
       </div>
       <section className="property__map map" style={{margin: '0 auto', width: '80%', background:'none'}}>
-        <Map city={currentOffer.city} points={offers} selectedPoint={selectedPoint}/>
+        <Map city={currentOffer.city} points={offers} selectedPoint={selectedPoint} height={500}/>
       </section>
     </section>
   );
