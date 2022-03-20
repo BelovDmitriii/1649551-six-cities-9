@@ -46,7 +46,7 @@ function Map({city, points, selectedPoint}:MapProps) {
 
   return (
     <div
-      style = {{height: '500px'}}
+      style = {{height: '682px'}}
       ref = {mapRef}
     >
     </div>

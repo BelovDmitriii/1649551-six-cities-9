@@ -1,16 +1,18 @@
-import { OfferType, ReviewType } from '../../types/offer';
+import { OfferType } from '../../types/offer';
 import ReviewList from '../review-list/reviews-list';
 import ReviewForm from '../review-form/reviews-form';
 import PlaceCardGallery from '../place-card-gallery/place-card-gallery';
 import Map from '../map/map';
+import { useAppSelector } from '../../hooks';
 
 type CardPropertyProps = {
   offers: OfferType[];
-  reviews: ReviewType[];
   selectedPoint: OfferType | null;
 };
 
-function CardProperty({offers, reviews, selectedPoint}: CardPropertyProps):JSX.Element {
+function CardProperty({offers, selectedPoint}: CardPropertyProps):JSX.Element {
+
+  const {reviews} = useAppSelector((state) => state);
 
   const [currentOffer] = offers;
 
@@ -105,7 +107,7 @@ function CardProperty({offers, reviews, selectedPoint}: CardPropertyProps):JSX.E
           <section className="property__reviews reviews">
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
-            <ReviewList reviews={reviews} />
+            <ReviewList reviews={reviews}/>
             <ReviewForm />
 
           </section>

@@ -5,7 +5,8 @@ type ReviewListProps = {
   reviews: ReviewType[];
 }
 
-function ReviewList ({reviews}: ReviewListProps): JSX.Element {
+function ReviewList ({reviews}:ReviewListProps): JSX.Element {
+
   return (
     <ul className="reviews__list">
       {reviews.map((review) => (
