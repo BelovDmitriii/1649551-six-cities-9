@@ -3,7 +3,7 @@ import { changeCity, setNearbyOffers, setNewReview, setSortType } from './action
 import { INITIAL_CITY } from '../const';
 import { offers } from '../mocks/offers';
 import { reviews } from '../mocks/reviews';
-import { filterCity, sortingType } from '../utils';
+import { filterCity, SortType } from '../utils';
 import { nearbyOffers } from '../mocks/nearby-offers';
 
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
   offers: offers,
   nearbyOffers: nearbyOffers,
   reviews: reviews,
-  sortType: sortingType[0],
+  sortType: SortType.POPULAR,
 };
 
 const reducer = createReducer(initialState, (builder) => {

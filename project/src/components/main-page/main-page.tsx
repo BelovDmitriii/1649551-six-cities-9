@@ -14,7 +14,7 @@ function MainPage(): JSX.Element {
 
   const sortedOffers = sortOffers(filteredOffers, sortType);
 
-  const placesCount: number = sortedOffers.length;
+  const placesCount: number = filteredOffers.length;
   const [selectedPoint, setSelectedPoint] = useState<OfferType | null>(null);
   const onPlaceCardHover = (offer: OfferType | null) => {
     setSelectedPoint(offer);

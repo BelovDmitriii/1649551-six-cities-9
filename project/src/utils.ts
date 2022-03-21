@@ -2,17 +2,24 @@ import { City, OfferType } from './types/offer';
 
 export const filterCity = (offers: OfferType[], city: City) => offers.filter((offer) => offer.city.name === city.name);
 
-export const sortingType = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
+export const SortType = {
+  POPULAR: 'Popular',
+  PRICE_TO_HIGH: 'Price: low to high',
+  PRICE_TO_LOW: 'Price: high to low',
+  TOP: 'Top rated first',
+};
+
+export const sortingType = Object.values(SortType);
 
 export const sortOffers = (offers: OfferType[], sortType: string) => {
   switch (sortType) {
-    case 'Popular':
+    case SortType.POPULAR:
       return offers;
-    case 'Price: low to high':
+    case SortType.PRICE_TO_LOW:
       return offers.sort((a, b) => a.price - b.price);
-    case 'Price: high to low':
+    case SortType.PRICE_TO_HIGH:
       return offers.sort((a, b) => b.price - a.price);
-    case 'Top rated first':
+    case SortType.TOP:
       return offers.sort((a, b) => b.rating - a.rating);
     default:
       return offers;
