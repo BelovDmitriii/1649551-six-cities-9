@@ -1,5 +1,6 @@
 import { sortingType } from '../../utils';
 import PlacesSortOption from '../places-sort-option/places-sort-option';
+import { useState } from 'react';
 
 type PlacesSortProps = {
   sortType: string;
@@ -7,14 +8,10 @@ type PlacesSortProps = {
 
 function PlacesSort({sortType}: PlacesSortProps):JSX.Element {
 
-  const toggleSortType = (): void => {
-    const placesOptions: HTMLElement | null = document.querySelector('.places__options');
-    (placesOptions as HTMLElement).classList.toggle('places__options--closed');
-    (placesOptions as HTMLElement).classList.toggle('places__options--opened');
-  };
+  const [isOpenSortPopup, toggleOpenSortPopup] = useState(false);
 
   return (
-    <form className="places__sorting" action="#" method="get" onClick={() => toggleSortType()}>
+    <form className="places__sorting" action="#" method="get" onClick={() => toggleOpenSortPopup(!isOpenSortPopup)}>
       <span className="places__sorting-caption">Sort by </span>
       <span
         className="places__sorting-type"
@@ -25,13 +22,12 @@ function PlacesSort({sortType}: PlacesSortProps):JSX.Element {
           <use xlinkHref="#icon-arrow-select" />
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--closed">
+      <ul className={`places__options places__options--custom ${isOpenSortPopup ? 'places__options--opened': ''}`}>
         {sortingType.map((type) => (
           <PlacesSortOption
             activeOption={sortType}
             key={type}
             option={type}
-            toggleSortType={toggleSortType}
           />
         ))}
       </ul>

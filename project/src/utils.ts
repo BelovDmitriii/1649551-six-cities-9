@@ -12,16 +12,17 @@ export const SortType = {
 export const sortingType = Object.values(SortType);
 
 export const sortOffers = (offers: OfferType[], sortType: string) => {
+  const sortedOffers = offers.slice();
   switch (sortType) {
     case SortType.POPULAR:
-      return offers;
+      return sortedOffers;
     case SortType.PRICE_TO_LOW:
-      return offers.sort((a, b) => a.price - b.price);
+      return sortedOffers.sort((a, b) => b.price - a.price);
     case SortType.PRICE_TO_HIGH:
-      return offers.sort((a, b) => b.price - a.price);
+      return sortedOffers.sort((a, b) => a.price - b.price);
     case SortType.TOP:
-      return offers.sort((a, b) => b.rating - a.rating);
+      return sortedOffers.sort((a, b) => b.rating - a.rating);
     default:
-      return offers;
+      return sortedOffers;
   }
 };

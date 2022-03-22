@@ -4,15 +4,13 @@ import { setSortType } from '../../store/action';
 type PlacesSortOptionProps = {
   activeOption: string;
   option: string;
-  toggleSortType: () => void;
 }
 
-function PlacesSortOption({ activeOption, option, toggleSortType }:PlacesSortOptionProps): JSX.Element {
+function PlacesSortOption({ activeOption, option }:PlacesSortOptionProps): JSX.Element {
 
   const dispatch = useAppDispatch();
   const changeActiveCard = () => {
     const sortType = option;
-    toggleSortType();
     dispatch(setSortType( sortType ));
   };
   return (
