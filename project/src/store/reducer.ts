@@ -1,17 +1,25 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, setNearbyOffers, setNewReview, setSortType, loadOffers, requireAutorization } from './action';
 import { INITIAL_CITY, AutorizationStatus } from '../const';
-import { offers as allOffers } from '../mocks/offers';
-import { reviews } from '../mocks/reviews';
+import { City, OfferType, ReviewType } from '../types/offer';
 import { filterCity, SortType } from '../utils';
-import { nearbyOffers } from '../mocks/nearby-offers';
 
-const initialState = {
+type InitialStateType = {
+  currentCity: City,
+  filteredOffers: OfferType[],
+  offers: OfferType[],
+  nearbyOffers: OfferType[],
+  reviews: ReviewType[],
+  sortType: string,
+  authorizationStatus: AutorizationStatus,
+}
+
+const initialState: InitialStateType = {
   currentCity: INITIAL_CITY,
-  filteredOffers: filterCity(allOffers, INITIAL_CITY),
-  offers: allOffers,
-  nearbyOffers: nearbyOffers,
-  reviews: reviews,
+  filteredOffers: [],
+  offers: [],
+  nearbyOffers: [],
+  reviews: [],
   sortType: SortType.POPULAR,
   authorizationStatus: AutorizationStatus.Unknown,
 };
