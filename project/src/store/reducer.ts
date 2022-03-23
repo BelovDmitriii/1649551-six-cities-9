@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, setNearbyOffers, setNewReview, setSortType, loadOffers } from './action';
-import { INITIAL_CITY } from '../const';
+import { changeCity, setNearbyOffers, setNewReview, setSortType, loadOffers, requireAutorization } from './action';
+import { INITIAL_CITY, AutorizationStatus } from '../const';
 import { offers as allOffers } from '../mocks/offers';
 import { reviews } from '../mocks/reviews';
 import { filterCity, SortType } from '../utils';
@@ -13,6 +13,7 @@ const initialState = {
   nearbyOffers: nearbyOffers,
   reviews: reviews,
   sortType: SortType.POPULAR,
+  authorizationStatus: AutorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -21,7 +22,7 @@ const reducer = createReducer(initialState, (builder) => {
     state.currentCity = city;
     state.filteredOffers = filterCity(state.offers, city);
   })
-    .addCase( setNearbyOffers, (state,action) => {
+    .addCase( setNearbyOffers, (state, action) => {
       state.nearbyOffers = action.payload;
     })
     .addCase(setNewReview, (state, action) => {
@@ -32,6 +33,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(requireAutorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 
