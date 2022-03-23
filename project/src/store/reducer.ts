@@ -1,15 +1,15 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, setNearbyOffers, setNewReview, setSortType } from './action';
+import { changeCity, setNearbyOffers, setNewReview, setSortType, loadOffers } from './action';
 import { INITIAL_CITY } from '../const';
-import { offers } from '../mocks/offers';
+import { offers as allOffers } from '../mocks/offers';
 import { reviews } from '../mocks/reviews';
 import { filterCity, SortType } from '../utils';
 import { nearbyOffers } from '../mocks/nearby-offers';
 
 const initialState = {
   currentCity: INITIAL_CITY,
-  filteredOffers: filterCity(offers, INITIAL_CITY),
-  offers: offers,
+  filteredOffers: filterCity(allOffers, INITIAL_CITY),
+  offers: allOffers,
   nearbyOffers: nearbyOffers,
   reviews: reviews,
   sortType: SortType.POPULAR,
@@ -29,6 +29,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSortType, (state, action) => {
       state.sortType = action.payload;
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
     });
 });
 
