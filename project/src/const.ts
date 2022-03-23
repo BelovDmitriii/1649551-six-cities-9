@@ -12,6 +12,14 @@ export enum AutorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+  Favorite = '/favorite',
+  Reviews = '/comments',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export const URL_MARKER_CURRENT = '../img/pin-active.svg';
 export const URL_MARKER_DEFAULT = '../img/pin.svg';
 export const ICON_WIDTH = 40;
