@@ -13,9 +13,9 @@ const isCheckedAuth = (authorizationStatus: AutorizationStatus): boolean =>
   authorizationStatus === AutorizationStatus.Unknown;
 
 function App(): JSX.Element {
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
 
-  if (isCheckedAuth(authorizationStatus)) {
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (
       <Spinner />
     );

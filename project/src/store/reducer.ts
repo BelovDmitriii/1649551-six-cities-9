@@ -11,6 +11,7 @@ type InitialStateType = {
   nearbyOffers: OfferType[],
   reviews: ReviewType[],
   sortType: string,
+  isDataLoaded: boolean,
   authorizationStatus: AutorizationStatus,
 }
 
@@ -21,7 +22,8 @@ const initialState: InitialStateType = {
   nearbyOffers: [],
   reviews: [],
   sortType: SortType.POPULAR,
-  authorizationStatus: AutorizationStatus.Unknown,
+  isDataLoaded: false,
+  authorizationStatus: AutorizationStatus.Auth,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -41,6 +43,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+      state.isDataLoaded = true;
     })
     .addCase(requireAutorization, (state, action) => {
       state.authorizationStatus = action.payload;
