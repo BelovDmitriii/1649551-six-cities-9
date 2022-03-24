@@ -23,7 +23,7 @@ const initialState: InitialStateType = {
   reviews: [],
   sortType: SortType.POPULAR,
   isDataLoaded: false,
-  authorizationStatus: AutorizationStatus.Auth,
+  authorizationStatus: AutorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {

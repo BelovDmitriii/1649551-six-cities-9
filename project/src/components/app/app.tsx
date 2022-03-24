@@ -10,7 +10,7 @@ import Spinner from '../spinner-component/spinner-component';
 import {useAppSelector} from '../../hooks';
 
 const isCheckedAuth = (authorizationStatus: AutorizationStatus): boolean =>
-  authorizationStatus === AutorizationStatus.Unknown;
+  authorizationStatus === AutorizationStatus.Auth;
 
 function App(): JSX.Element {
   const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
