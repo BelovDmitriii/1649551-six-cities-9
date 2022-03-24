@@ -2,13 +2,23 @@ import styles from './spinner.module.css';
 
 function Spinner(): JSX.Element {
   return (
-    <div className="spinner">
-      <div className="spinner-circle spinner-circle-outer"></div>
-      <div className="spinner-circle-off spinner-circle-inner"></div>
-      <div className="spinner-circle spinner-circle-single-1"></div>
-      <div className="spinner-circle spinner-circle-single-2"></div>
-      <div className="text">...Грузимся...</div>
+    <div className={styles.body}>
+      <div className={styles.spinner}>
+        <div className={[styles.spinnerCircle, styles.spinnerCircleOuter].join(' ')}>
+        </div>
+        <div className={[styles.spinnerCircleOff, styles.spinnerCircleInner].join(' ')}>
+        </div>
+        <div className={[styles.spinnerCircle, styles.spinnerCircleSingle1].join(' ')}>
+        </div>
+        <div className={[styles.spinnerCircle, styles.spinnerCircleSingle2].join(' ')}>
+        </div>
+        <div className={styles.text}>
+          ...Грузимся...
+        </div>
+      </div>
     </div>);
 }
 
 export default Spinner;
+
+

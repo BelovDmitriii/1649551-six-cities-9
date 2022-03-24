@@ -1,9 +1,10 @@
-html,
+html
 body {
   text-align: center;
   vertical-align: middle;
-  height: 100%;
+  height: 100vh;
   font-family: sans-serif;
+  justify-content: center;
 }
 .spinner {
   display: inline-block;
@@ -24,7 +25,7 @@ body {
   font-size: 80%;
   color: hsla(0, 0%, 0%, 0.4);
 }
-.spinner .spinner-circle {
+.spinner .spinnerCircle {
   position: absolute;
   background-color: transparent;
   -webkit-border-radius: 50%;
@@ -32,7 +33,7 @@ body {
   border-style: solid;
   border-color: #181818 transparent #181818 transparent;
 }
-.spinner .spinner-circle.spinner-circle-outer {
+.spinner .spinnerCircle.spinnerCircleOuter {
   width: 51.2px;
   height: 51.2px;
   border-width: 12.8px;
@@ -47,7 +48,7 @@ body {
   -ms-animation: spinner-rotate-outer 2s 0s ease-in-out infinite;
   animation: spinner-rotate-outer 2s 0s ease-in-out infinite;
 }
-.spinner .spinner-circle.spinner-circle-inner {
+.spinner .spinnerCircle.spinnerCircleInner {
   width: 25.6px;
   height: 25.6px;
   border-width: 6.4px;
@@ -62,7 +63,7 @@ body {
   -ms-animation: spinner-rotate-inner 3s 0s linear infinite;
   animation: spinner-rotate-inner 3s 0s linear infinite;
 }
-.spinner .spinner-circle.spinner-circle-single-1 {
+.spinner .spinnerCircle.spinnerCircleSingle1 {
   width: 38.4px;
   height: 38.4px;
   border-width: 9.6px;
@@ -80,7 +81,7 @@ body {
   -webkit-box-shadow: 2px 0 2px #4dc3ff;
   box-shadow: 2px 0 2px #4dc3ff;
 }
-.spinner .spinner-circle.spinner-circle-single-2 {
+.spinner .spinnerCircle.spinnerCircleSingle2 {
   width: 0;
   height: 0;
   border-width: 25.6px;
