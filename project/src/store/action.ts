@@ -9,3 +9,4 @@ export const setNewReview = createAction<ReviewType[]>('main/review');
 export const setSortType = createAction<string>('main/setSortType');
 export const loadOffers = createAction<OfferType[]>('data/loadOffers');
 export const requireAutorization = createAction<AutorizationStatus>('user/requireAutorization');
+export const loadCurrentOffer = createAction<OfferType>('data/loadCurrentOffer');
