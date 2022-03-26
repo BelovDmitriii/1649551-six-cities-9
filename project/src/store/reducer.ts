@@ -13,6 +13,7 @@ type InitialStateType = {
   sortType: string,
   isDataLoaded: boolean,
   authorizationStatus: AutorizationStatus,
+  error: string,
 }
 
 const initialState: InitialStateType = {
@@ -24,6 +25,7 @@ const initialState: InitialStateType = {
   sortType: SortType.POPULAR,
   isDataLoaded: false,
   authorizationStatus: AutorizationStatus.Unknown,
+  error: '',
 };
 
 const reducer = createReducer(initialState, (builder) => {
