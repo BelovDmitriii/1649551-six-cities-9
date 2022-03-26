@@ -4,9 +4,10 @@ import { Provider } from 'react-redux';
 import App from './components/app/app';
 import ErrorMessage from './components/error-message/error-message';
 import { store } from './store';
-import {fetchOfferAction} from './store/api-actions';
+import {fetchOfferAction, checkAuthAction} from './store/api-actions';
 
 store.dispatch(fetchOfferAction());
+store.dispatch(checkAuthAction());
 
 ReactDOM.render(
   <React.StrictMode>
