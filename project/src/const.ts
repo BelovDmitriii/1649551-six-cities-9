@@ -89,3 +89,8 @@ export const CITIES = [
 ];
 
 export const INITIAL_CITY = CITIES[0];
+
+export enum LogoTypes {
+  Header = 'header',
+  Footer = 'footer',
+}
