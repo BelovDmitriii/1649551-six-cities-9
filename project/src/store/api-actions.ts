@@ -10,7 +10,7 @@ import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handles';
 
 export const clearErrorAction = createAsyncThunk(
-  'game/clearError',
+  '/clearError',
   () => {
     setTimeout(
       () => store.dispatch(setError('')),

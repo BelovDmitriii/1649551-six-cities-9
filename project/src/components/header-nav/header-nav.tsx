@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AutorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
+import {AppRoute} from '../../const';
 
 function HeaderNav(): JSX.Element {
 
@@ -17,7 +18,7 @@ function HeaderNav(): JSX.Element {
             <li className="header__nav-item user">
               <Link
                 className="header__nav-link header__nav-link--profile"
-                to="/favorites"
+                to={AppRoute.Main}
               >
                 <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                 <span className="header__user-name user__name">
@@ -28,8 +29,9 @@ function HeaderNav(): JSX.Element {
             <li className="header__nav-item">
               <Link
                 className="header__nav-link"
-                to="/"
+                to={AppRoute.Main}
                 onClick={(evt) => {
+                  evt.preventDefault();
                   dispatch(logoutAction());
                 }}
               >
@@ -52,7 +54,7 @@ function HeaderNav(): JSX.Element {
           <li className="header__nav-item user">
             <Link
               className="header__nav-link header__nav-link--profile"
-              to="/login"
+              to={AppRoute.SignIn}
             >
               <div className="header__avatar-wrapper user__avatar-wrapper"></div>
               <span className="header__login">Sign in</span>
@@ -65,7 +67,7 @@ function HeaderNav(): JSX.Element {
             <li className="header__nav-item user">
               <Link
                 className="header__nav-link header__nav-link--profile"
-                to="/favorites"
+                to={AppRoute.Main}
               >
                 <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                 <span className="header__user-name user__name">
@@ -76,7 +78,7 @@ function HeaderNav(): JSX.Element {
             <li className="header__nav-item">
               <Link
                 className="header__nav-link"
-                to="/"
+                to={AppRoute.Main}
                 onClick={(evt) => {
                   evt.preventDefault();
                   dispatch(logoutAction());
