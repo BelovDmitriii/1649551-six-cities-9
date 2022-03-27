@@ -33,8 +33,8 @@ function Map({city, points, selectedPoint, height}:MapProps) {
       points.forEach((point) => {
         const marker = new Marker(
           {
-            lat: point.city.location.latitude,
-            lng: point.city.location.longitude,
+            lat: point.location.latitude,
+            lng: point.location.longitude,
           });
         marker.setIcon(
           selectedPoint !== null && point.id === selectedPoint.id
