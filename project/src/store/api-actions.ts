@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {api} from '../store';
 import { store } from '../store';
 import { OfferType } from '../types/offer';
-import { loadOffers, loadCurrentOffer, requireAutorization, setError } from './action';
-import { APIRoute, AutorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { loadOffers, loadCurrentOffer, requireAutorization, setError, redirectToRoute } from './action';
+import { APIRoute, AppRoute, AutorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from '../types/user-data';
@@ -59,6 +59,7 @@ export const loginAction = createAsyncThunk(
       const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
       saveToken(token);
       store.dispatch(requireAutorization(AutorizationStatus.Auth));
+      store.dispatch(redirectToRoute(AppRoute.Main));
     } catch (error) {
       errorHandle(error);
       store.dispatch(requireAutorization(AutorizationStatus.NoAuth));
