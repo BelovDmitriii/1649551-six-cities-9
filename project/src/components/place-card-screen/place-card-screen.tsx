@@ -4,6 +4,7 @@ import CardProperty from '../place-card-property/place-card-property';
 import PlaceCardList from '../place-card-list/place-card-list';
 import {useState} from 'react';
 import { useAppSelector } from '../../hooks';
+import {CardTypes} from '../../const';
 
 function PlaceCardScreen(): JSX.Element {
 
@@ -25,7 +26,7 @@ function PlaceCardScreen(): JSX.Element {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
 
-              <PlaceCardList offers={nearbyOffers} onPlaceCardHover={onPlaceCardHover}/>
+              <PlaceCardList offers={nearbyOffers} onPlaceCardHover={onPlaceCardHover} typeCard={CardTypes.Nearby}/>
 
             </div>
           </section>

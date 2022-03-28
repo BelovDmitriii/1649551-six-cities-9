@@ -107,3 +107,11 @@ export const MONTHS_NAMES = [
   'November',
   'December',
 ];
+export const PERCENT_PER_STAR = 20;
+export const MAX_REVIEWS_COUNT = 10;
+
+export enum CardTypes {
+  Main = 'cities',
+  Favorites = 'favorites',
+  Nearby = 'near-places',
+}

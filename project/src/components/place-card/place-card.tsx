@@ -1,19 +1,61 @@
 import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offer';
-import {AppRoute} from '../../const';
+import {AppRoute, CardTypes, PERCENT_PER_STAR} from '../../const';
 
 type PlaceCardProps = {
   offer: OfferType;
   onPlaceCardHover: (offer: OfferType | null) => void;
+  typeCard: CardTypes;
 }
 
+type CardsParametrs = {
+  mainClass: string;
+  classPrefix: string;
+  imgWidth: number;
+  imgHeight: number;
+}
+
+const getParametrs = (type: CardTypes): CardsParametrs => {
+  switch (type) {
+    case CardTypes.Main:
+      return {
+        mainClass: 'cities__place-card',
+        classPrefix: CardTypes.Main,
+        imgWidth: 260,
+        imgHeight: 200,
+      };
+    case CardTypes.Favorites:
+      return {
+        mainClass: 'favorites__card',
+        classPrefix: CardTypes.Favorites,
+        imgWidth: 150,
+        imgHeight: 110,
+      };
+    case CardTypes.Nearby:
+      return {
+        mainClass: 'near-places__card',
+        classPrefix: CardTypes.Nearby,
+        imgWidth: 260,
+        imgHeight: 200,
+      };
+    default:
+      return {
+        mainClass: 'cities__place-card',
+        classPrefix: CardTypes.Main,
+        imgWidth: 260,
+        imgHeight: 200,
+      };
+  }
+};
+
 function PlaceCard (props: PlaceCardProps): JSX.Element {
-  const {offer, onPlaceCardHover} = props;
+  const {offer, onPlaceCardHover, typeCard} = props;
   const {previewImage, title, price, rating, type, id, isPremium} = offer;
+  const { mainClass, classPrefix, imgWidth, imgHeight } = getParametrs(typeCard);
 
   return (
     <article
-      className="cities__place-card place-card"
+      className={`${mainClass} place-card`}
       onMouseOver = {() => onPlaceCardHover(offer)}
       onMouseOut = {() => onPlaceCardHover(null)}
     >
@@ -22,9 +64,15 @@ function PlaceCard (props: PlaceCardProps): JSX.Element {
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${classPrefix}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Offer}/${id}`}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt={title} />
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width={imgWidth}
+            height={imgHeight}
+            alt={title}
+          />
         </Link>
       </div>
       <div className="place-card__info">
@@ -42,7 +90,7 @@ function PlaceCard (props: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{ width: `${rating * PERCENT_PER_STAR}%` }}></span>
             <span className="visually-hidden">{rating}</span>
           </div>
         </div>

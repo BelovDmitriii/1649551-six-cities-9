@@ -1,15 +1,18 @@
 import ReviewItem from '../review-item/reviews-item';
 import { ReviewType } from '../../types/offer';
+import {lengthOfReviews, sortReviewsDate} from '../../utils';
+import {useAppSelector} from '../../hooks';
 
-type ReviewListProps = {
-  reviews: ReviewType[];
-}
+function ReviewList (): JSX.Element {
 
-function ReviewList ({reviews}:ReviewListProps): JSX.Element {
-
+  const {reviews} = useAppSelector((state) => state);
+  const sortReviews: ReviewType[] = sortReviewsDate(reviews);
+  const shownReviews: ReviewType[] = lengthOfReviews(sortReviews);
+  // eslint-disable-next-line no-console
+  console.log(shownReviews);
   return (
     <ul className="reviews__list">
-      {reviews.map((review) => (
+      {shownReviews.map((review) => (
         <ReviewItem review={review} key={review.id} />
       ))}
     </ul>

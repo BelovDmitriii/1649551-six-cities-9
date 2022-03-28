@@ -7,6 +7,7 @@ import { useAppSelector } from '../../hooks';
 import {useState} from 'react';
 import PlacesSort from '../places-sort/places-sort';
 import { sortOffers } from '../../utils';
+import {CardTypes} from '../../const';
 
 function MainPage(): JSX.Element {
 
@@ -45,7 +46,7 @@ function MainPage(): JSX.Element {
                 <PlacesSort sortType={sortType}/>
 
                 <div className="cities__places-list places__list tabs__content">
-                  <PlaceCardList offers={sortedOffers} onPlaceCardHover={onPlaceCardHover} />
+                  <PlaceCardList offers={sortedOffers} onPlaceCardHover={onPlaceCardHover} typeCard={CardTypes.Main}/>
                 </div>
               </section>
               <div className="cities__right-section">

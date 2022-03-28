@@ -1,11 +1,9 @@
 import { ReviewType } from '../../types/offer';
-import {MONTHS_NAMES} from '../../const';
+import {MONTHS_NAMES, PERCENT_PER_STAR} from '../../const';
 
 type ReviewItemProps = {
   review: ReviewType;
 }
-
-export const PERCENT_PER_STAR = 20;
 
 const transformDate = (dateToTransform: string): string => {
   const date = new Date(dateToTransform);
