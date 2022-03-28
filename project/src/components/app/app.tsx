@@ -12,7 +12,7 @@ import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 
 const isCheckedAuth = (authorizationStatus: AutorizationStatus): boolean =>
-  authorizationStatus === AutorizationStatus.Auth;
+  authorizationStatus === AutorizationStatus.Unknown;
 
 function App(): JSX.Element {
   const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
@@ -38,7 +38,7 @@ function App(): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AutorizationStatus.Auth}
+              authorizationStatus={authorizationStatus}
             >
               <FavoritesScreen />
             </PrivateRoute>

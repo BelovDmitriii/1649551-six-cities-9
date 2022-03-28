@@ -8,10 +8,11 @@ import {useState} from 'react';
 import PlacesSort from '../places-sort/places-sort';
 import { sortOffers } from '../../utils';
 import {CardTypes} from '../../const';
+import Spinner from '../spinner-component/spinner-component';
 
 function MainPage(): JSX.Element {
 
-  const {filteredOffers, currentCity, sortType} = useAppSelector((state) => state);
+  const {filteredOffers, currentCity, sortType, isDataLoaded} = useAppSelector((state) => state);
 
   const sortedOffers = sortOffers(filteredOffers, sortType);
 
@@ -29,34 +30,34 @@ function MainPage(): JSX.Element {
 
       <div className="page page--gray page--main">
         <Header />
-
-        <main className="page__main page__main--index">
-          <h1 className="visually-hidden">Cities</h1>
-          <div className="tabs">
-            <section className="locations container">
-              <LocationList />
-            </section>
-          </div>
-          <div className="cities">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{placesCount} places to stay in {currentCity.name}</b>
-
-                <PlacesSort sortType={sortType}/>
-
-                <div className="cities__places-list places__list tabs__content">
-                  <PlaceCardList offers={sortedOffers} onPlaceCardHover={onPlaceCardHover} typeCard={CardTypes.Main}/>
-                </div>
+        {!isDataLoaded ? <Spinner /> :
+          <main className="page__main page__main--index">
+            <h1 className="visually-hidden">Cities</h1>
+            <div className="tabs">
+              <section className="locations container">
+                <LocationList />
               </section>
-              <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map city={currentCity} points={filteredOffers} selectedPoint={selectedPoint}  key={currentCity.name} height={682}/>
+            </div>
+            <div className="cities">
+              <div className="cities__places-container container">
+                <section className="cities__places places">
+                  <h2 className="visually-hidden">Places</h2>
+                  <b className="places__found">{placesCount} places to stay in {currentCity.name}</b>
+
+                  <PlacesSort sortType={sortType}/>
+
+                  <div className="cities__places-list places__list tabs__content">
+                    <PlaceCardList offers={sortedOffers} onPlaceCardHover={onPlaceCardHover} typeCard={CardTypes.Main}/>
+                  </div>
                 </section>
+                <div className="cities__right-section">
+                  <section className="cities__map map">
+                    <Map city={currentCity} points={filteredOffers} selectedPoint={selectedPoint}  key={currentCity.name} height={682}/>
+                  </section>
+                </div>
               </div>
             </div>
-          </div>
-        </main>
+          </main>}
       </div>
     </>
   );

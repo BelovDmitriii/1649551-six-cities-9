@@ -8,8 +8,7 @@ function ReviewList (): JSX.Element {
   const {reviews} = useAppSelector((state) => state);
   const sortReviews: ReviewType[] = sortReviewsDate(reviews);
   const shownReviews: ReviewType[] = lengthOfReviews(sortReviews);
-  // eslint-disable-next-line no-console
-  console.log(shownReviews);
+
   return (
     <ul className="reviews__list">
       {shownReviews.map((review) => (

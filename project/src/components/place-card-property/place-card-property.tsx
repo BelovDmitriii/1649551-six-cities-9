@@ -12,11 +12,9 @@ type CardPropertyProps = {
 
 function CardProperty({offers, selectedPoint}: CardPropertyProps):JSX.Element {
 
-  const {reviews} = useAppSelector((state) => state);
+  const {reviews, currentOffer} = useAppSelector((state) => state);
 
-  const [currentOffer] = offers;
-
-  const { title, isFavorite, isPremium, rating, type, bedrooms, maxAdults, price, goods, description} = currentOffer;
+  const {title, isFavorite, isPremium, rating, type, bedrooms, maxAdults, price, goods, description} = currentOffer;
 
   return (
     <section className="property">

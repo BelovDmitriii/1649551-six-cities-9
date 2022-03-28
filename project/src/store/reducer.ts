@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, setNearbyOffers, setNewReview, setSortType, loadOffers, requireAutorization, loadReviews } from './action';
+import { changeCity, setNearbyOffers, setNewReview, setSortType, loadOffers, requireAutorization, loadReviews, loadCurrentOffer } from './action';
 import { INITIAL_CITY, AutorizationStatus } from '../const';
 import { City, OfferType, ReviewType } from '../types/offer';
 import { filterCity, SortType } from '../utils';
@@ -13,7 +13,9 @@ type InitialStateType = {
   sortType: string,
   isDataLoaded: boolean,
   authorizationStatus: AutorizationStatus,
-  currentOffer: OfferType | null,
+  currentOffer: OfferType,
+  isOfferLoaded: boolean,
+  isNearbyOffersLoaded: boolean,
 }
 
 const initialState: InitialStateType = {
@@ -25,7 +27,42 @@ const initialState: InitialStateType = {
   sortType: SortType.POPULAR,
   isDataLoaded: false,
   authorizationStatus: AutorizationStatus.Unknown,
-  currentOffer: null,
+  currentOffer: {
+    city: {
+      name: '',
+      location: {
+        latitude: 0,
+        longitude: 0,
+        zoom: 10,
+      },
+    },
+    previewImage: '',
+    images: [],
+    title: '',
+    isFavorite: false,
+    isPremium: true,
+    rating: 1000,
+    type: '',
+    bedrooms: 0,
+    maxAdults: 0,
+    price: 0,
+    goods: [],
+    host: {
+      id: 0,
+      name: '',
+      isPro: false,
+      avatarUrl: '',
+    },
+    description: '',
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 10,
+    },
+    id: 100,
+  },
+  isOfferLoaded: false,
+  isNearbyOffersLoaded: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -36,6 +73,7 @@ const reducer = createReducer(initialState, (builder) => {
   })
     .addCase( setNearbyOffers, (state, action) => {
       state.nearbyOffers = action.payload;
+      state.isNearbyOffersLoaded = true;
     })
     .addCase(setNewReview, (state, action) => {
       state.reviews = action.payload;
@@ -52,6 +90,10 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadReviews, (state, action) => {
       state.reviews = action.payload;
+    })
+    .addCase(loadCurrentOffer, (state, action) => {
+      state.currentOffer = action.payload;
+      state.isOfferLoaded = true;
     });
 });
 
