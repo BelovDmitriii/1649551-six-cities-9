@@ -9,6 +9,7 @@ import {store} from '../../store';
 import {useParams} from 'react-router-dom';
 import {useEffect} from 'react';
 import {loadCurrentOfferAction, fetchReviewsAction, fetchNearbyOffersAction} from '../../store/api-actions';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 function PlaceCardScreen(): JSX.Element {
 
@@ -31,14 +32,15 @@ function PlaceCardScreen(): JSX.Element {
   }, [id]);
 
   if (!currentOffer) {
-    return null;
+    return <NotFoundPage />;
   }
 
   return (
     <div className="page">
       <Header />
       {currentOffer && (
-        <><CardProperty currentOffer={currentOffer} selectedPoint={selectedPoint} offers={filteredOffers} reviews={reviews}/>
+        <>
+          <CardProperty currentOffer={currentOffer} selectedPoint={selectedPoint} offers={filteredOffers} reviews={reviews}/>
           <main className="page__main page__main--property">
             <div className="container">
               <section className="near-places places">

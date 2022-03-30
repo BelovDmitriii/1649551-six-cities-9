@@ -1,21 +1,22 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, setNearbyOffers, setNewReview, setSortType, loadOffers, requireAutorization, loadReviews, loadCurrentOffer } from './action';
+import { changeCity, setNearbyOffers, setNewReview, setSortType, loadOffers, requireAutorization, loadReviews, loadCurrentOffer, loadFavoriteOffers } from './action';
 import { INITIAL_CITY, AutorizationStatus } from '../const';
 import { City, OfferType, ReviewType } from '../types/offer';
 import { filterCity, SortType } from '../utils';
 
 type InitialStateType = {
-  currentCity: City,
-  filteredOffers: OfferType[],
-  offers: OfferType[],
-  nearbyOffers: OfferType[],
-  reviews: ReviewType[],
-  sortType: string,
-  isDataLoaded: boolean,
-  authorizationStatus: AutorizationStatus,
-  currentOffer: OfferType | null,
-  isOfferLoaded: boolean,
-  isNearbyOffersLoaded: boolean,
+  currentCity: City;
+  filteredOffers: OfferType[];
+  offers: OfferType[];
+  nearbyOffers: OfferType[];
+  reviews: ReviewType[];
+  sortType: string;
+  isDataLoaded: boolean;
+  authorizationStatus: AutorizationStatus;
+  currentOffer: OfferType | null;
+  isOfferLoaded: boolean;
+  isNearbyOffersLoaded: boolean;
+  favoriteOffers: OfferType[];
 }
 
 const initialState: InitialStateType = {
@@ -30,6 +31,7 @@ const initialState: InitialStateType = {
   currentOffer: null,
   isOfferLoaded: false,
   isNearbyOffersLoaded: false,
+  favoriteOffers: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -61,6 +63,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadCurrentOffer, (state, action) => {
       state.currentOffer = action.payload;
       state.isOfferLoaded = true;
+    })
+    .addCase(loadFavoriteOffers, (state, action) => {
+      state.favoriteOffers = action.payload;
     });
 });
 

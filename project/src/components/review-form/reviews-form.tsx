@@ -1,12 +1,18 @@
 import { useState, ChangeEvent, useEffect, FormEvent } from 'react';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import { errorHandle } from '../../services/error-handles';
+import {useAppDispatch} from '../../hooks';
 import {fetchSendReview} from '../../store/api-actions';
+import Rating from '../rating-component/rating-component';
+import { OfferType } from '../../types/offer';
+import { ReviewWithIdType } from '../../types/review';
 
-function ReviewForm():JSX.Element {
+type ReviewFormProps = {
+  currentOffer: OfferType;
+  currentId: number;
+}
+
+function ReviewForm({currentOffer, currentId}:ReviewFormProps):JSX.Element {
 
   const dispatch = useAppDispatch();
-  const {currentOffer} = useAppSelector((state) => state);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
@@ -31,24 +37,21 @@ function ReviewForm():JSX.Element {
     setComment(value);
   };
 
-  const fieldset: HTMLFieldSetElement | null = document.querySelector('.reviews__fieldset');
-
-  const sendReview = async () => {
-    try {
-      await dispatch(fetchSendReview({ id: currentOffer.id, comment, rating }));
-      setComment('');
-      setRating(0);
-      (fieldset as HTMLFieldSetElement).disabled = false;
-    } catch (error) {
-      errorHandle(error);
-      (fieldset as HTMLFieldSetElement).disabled = false;
-    }
+  const onSubmit = (reviewData: ReviewWithIdType) => {
+    dispatch(fetchSendReview(reviewData));
+    setRating(0);
+    setComment('');
   };
 
   const formSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    (fieldset as HTMLFieldSetElement).disabled = true;
-    sendReview();
+
+    onSubmit({
+      comment: comment,
+      rating: rating,
+      id: Number(currentId),
+    });
+
   };
 
   return (
@@ -56,51 +59,7 @@ function ReviewForm():JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
-      <div className="reviews__rating-form form__rating">
-        <input
-          onChange={ratingChangeHandler}
-          className="form__rating-input visually-hidden"
-          name="rating"
-          defaultValue={5}
-          value="5"
-          id="5-stars"
-          type="radio"
-        >
-        </input>
-        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"></input>
-        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"></input>
-        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"></input>
-        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"></input>
-        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-      </div>
+      <Rating getRating={ratingChangeHandler} rating={rating}/>
       <textarea className="reviews__textarea form__textarea"
         onChange={commentChangeHandler}
         value = {comment}

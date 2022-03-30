@@ -1,6 +1,11 @@
 import { City, OfferType, ReviewType } from './types/offer';
 import { MAX_REVIEWS_COUNT } from './const';
 
+const PERCENT = 100;
+const MAX_RATING = 5;
+
+export const ratingWidth = (rating: number): number => Math.round(rating / MAX_RATING * PERCENT);
+
 export const filterCity = (offers: OfferType[], city: City) => offers.filter((offer) => offer.city.name === city.name);
 
 export const SortType = {

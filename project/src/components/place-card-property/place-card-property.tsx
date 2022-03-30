@@ -3,6 +3,7 @@ import ReviewList from '../review-list/reviews-list';
 import ReviewForm from '../review-form/reviews-form';
 import PlaceCardGallery from '../place-card-gallery/place-card-gallery';
 import Map from '../map/map';
+import {ratingWidth} from '../../utils';
 
 type CardPropertyProps = {
   offers: OfferType[];
@@ -12,6 +13,8 @@ type CardPropertyProps = {
 };
 
 function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardPropertyProps):JSX.Element {
+
+  const currentId = currentOffer.id;
 
   return (
     <section className="property">
@@ -42,7 +45,7 @@ function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardProper
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
-              <span style={{ width: '80%' }}></span>
+              <span style={{ width: `${ratingWidth(currentOffer.rating)}%` }}></span>
               <span className="visually-hidden">Rating</span>
             </div>
             <span className="property__rating-value rating__value">{currentOffer.rating}</span>
@@ -81,21 +84,25 @@ function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardProper
             <h2 className="property__host-title">Meet the host</h2>
             <div className="property__host-user user">
               <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                <img
+                  className="property__avatar user__avatar"
+                  src={currentOffer.host.avatarUrl}
+                  width="74"
+                  height="74"
+                  alt="Host avatar"
+                />
               </div>
               <span className="property__user-name">
-                Angelina
+                {currentOffer.host.name}
               </span>
+              {currentOffer.host.isPro &&
               <span className="property__user-status">
                 Pro
-              </span>
+              </span>}
             </div>
             <div className="property__description">
               <p className="property__text">
                 {currentOffer.description}
-              </p>
-              <p className="property__text">
-              An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
               </p>
             </div>
           </div>
@@ -103,7 +110,7 @@ function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardProper
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
             <ReviewList reviews={reviews}/>
-            <ReviewForm />
+            <ReviewForm currentOffer={currentOffer} currentId={currentId}/>
 
           </section>
         </div>
