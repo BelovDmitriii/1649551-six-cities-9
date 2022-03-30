@@ -1,11 +1,13 @@
 import ReviewItem from '../review-item/reviews-item';
 import { ReviewType } from '../../types/offer';
 import {lengthOfReviews, sortReviewsDate} from '../../utils';
-import {useAppSelector} from '../../hooks';
 
-function ReviewList (): JSX.Element {
+type ReviewListProps = {
+  reviews: ReviewType[];
+}
 
-  const {reviews} = useAppSelector((state) => state);
+function ReviewList ({reviews}:ReviewListProps): JSX.Element {
+
   const sortReviews: ReviewType[] = sortReviewsDate(reviews);
   const shownReviews: ReviewType[] = lengthOfReviews(sortReviews);
 

@@ -36,7 +36,7 @@ export const loadCurrentOfferAction = createAsyncThunk(
 
 export const fetchNearbyOffersAction = createAsyncThunk(
   'data/fetchNearbyOffers',
-  async (id: string) => {
+  async (id: number) => {
     try {
       const {data} = await api.get<OfferType[]>(`${APIRoute.Offers}/${id}${APIRoute.Nearby}`);
       store.dispatch(setNearbyOffers(data));
@@ -89,7 +89,7 @@ export const logoutAction = createAsyncThunk(
 
 export const fetchReviewsAction = createAsyncThunk(
   'data/fetchReviews',
-  async (id: string) => {
+  async (id: number) => {
     try {
       const {data} = await api.get<ReviewType[]>(`${APIRoute.Reviews}/${id}`);
       store.dispatch(loadReviews(data));
