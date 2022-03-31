@@ -1,3 +1,19 @@
+export const URL_MARKER_CURRENT = '../img/pin-active.svg';
+export const URL_MARKER_DEFAULT = '../img/pin.svg';
+export const ICON_WIDTH = 40;
+export const ICON_HEIGHT = 50;
+export const ANCHOR_RELATIVE_X = 20;
+export const ANCHOR_RELATIVE_Y = 40;
+export const RATING_VALUES = [5, 4, 3, 2, 1];
+
+export enum RatingName {
+  'Terribly',
+  'Badly',
+  'Not bad',
+  'Good',
+  'Perfect',
+}
+
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
@@ -18,22 +34,14 @@ export enum APIRoute {
   Reviews = '/comments',
   Login = '/login',
   Logout = '/logout',
+  Nearby = '/nearby',
 }
-
-export const TIMEOUT_SHOW_ERROR = 2000;
 
 export enum HTTP_CODE {
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
   NOT_FOUND = 404,
 }
-
-export const URL_MARKER_CURRENT = '../img/pin-active.svg';
-export const URL_MARKER_DEFAULT = '../img/pin.svg';
-export const ICON_WIDTH = 40;
-export const ICON_HEIGHT = 50;
-export const ANCHOR_RELATIVE_X = 20;
-export const ANCHOR_RELATIVE_Y = 40;
 
 export const getRandomNumber = (min: number, max: number) => Math.floor (Math.random () * (max - min + 1)) + min;
 
@@ -93,4 +101,27 @@ export const INITIAL_CITY = CITIES[0];
 export enum LogoTypes {
   Header = 'header',
   Footer = 'footer',
+}
+
+export const MONTHS_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'Octover',
+  'November',
+  'December',
+];
+export const PERCENT_PER_STAR = 20;
+export const MAX_REVIEWS_COUNT = 10;
+
+export enum CardTypes {
+  Main = 'cities',
+  Favorites = 'favorites',
+  Nearby = 'near-places',
 }

@@ -1,4 +1,10 @@
-import { City, OfferType } from './types/offer';
+import { City, OfferType, ReviewType } from './types/offer';
+import { MAX_REVIEWS_COUNT } from './const';
+
+const PERCENT = 100;
+const MAX_RATING = 5;
+
+export const ratingWidth = (rating: number): number => Math.round(rating / MAX_RATING * PERCENT);
 
 export const filterCity = (offers: OfferType[], city: City) => offers.filter((offer) => offer.city.name === city.name);
 
@@ -25,4 +31,19 @@ export const sortOffers = (offers: OfferType[], sortType: string) => {
     default:
       return sortedOffers;
   }
+};
+
+export const lengthOfReviews = (array: ReviewType[]) => {
+  if (array.length > 10) {
+    return array.slice(0, MAX_REVIEWS_COUNT);
+  }
+  return array;
+};
+
+export const sortReviewsDate = (array: ReviewType[]) => {
+  if (array.length < 2) {
+    return array;
+  }
+  const newArray = array.slice();
+  return newArray.sort((b, a) => Date.parse(a.date) - Date.parse(b.date));
 };

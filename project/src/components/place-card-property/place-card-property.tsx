@@ -1,22 +1,20 @@
-import { OfferType } from '../../types/offer';
+import { OfferType, ReviewType } from '../../types/offer';
 import ReviewList from '../review-list/reviews-list';
 import ReviewForm from '../review-form/reviews-form';
 import PlaceCardGallery from '../place-card-gallery/place-card-gallery';
 import Map from '../map/map';
-import { useAppSelector } from '../../hooks';
+import {ratingWidth} from '../../utils';
 
 type CardPropertyProps = {
   offers: OfferType[];
   selectedPoint: OfferType | null;
+  currentOffer: OfferType;
+  reviews: ReviewType[];
 };
 
-function CardProperty({offers, selectedPoint}: CardPropertyProps):JSX.Element {
+function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardPropertyProps):JSX.Element {
 
-  const {reviews} = useAppSelector((state) => state);
-
-  const [currentOffer] = offers;
-
-  const { title, isFavorite, isPremium, rating, type, bedrooms, maxAdults, price, goods, description} = currentOffer;
+  const currentId = currentOffer.id;
 
   return (
     <section className="property">
@@ -25,18 +23,18 @@ function CardProperty({offers, selectedPoint}: CardPropertyProps):JSX.Element {
 
       <div className="property__container container">
         <div className="property__wrapper">
-          {isPremium && (
+          {currentOffer.isPremium && (
             <div className="property__mark">
               <span>Premium</span>
             </div>
           )}
           <div className="property__name-wrapper">
             <h1 className="property__name">
-              {title}
+              {currentOffer.title}
             </h1>
             <button className={
               `property__bookmark-button button
-              ${isFavorite ? 'property__bookmark-button--active' : ''}`
+              ${currentOffer.isFavorite ? 'property__bookmark-button--active' : ''}`
             } type="button"
             >
               <svg className="property__bookmark-icon" width="31" height="33">
@@ -47,32 +45,32 @@ function CardProperty({offers, selectedPoint}: CardPropertyProps):JSX.Element {
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
-              <span style={{ width: '80%' }}></span>
+              <span style={{ width: `${ratingWidth(currentOffer.rating)}%` }}></span>
               <span className="visually-hidden">Rating</span>
             </div>
-            <span className="property__rating-value rating__value">{rating}</span>
+            <span className="property__rating-value rating__value">{currentOffer.rating}</span>
           </div>
           <ul className="property__features">
             <li className="property__feature property__feature--entire">
-              {type}
+              {currentOffer.type}
             </li>
             <li className="property__feature property__feature--bedrooms">
-              {bedrooms} Bedrooms
+              {currentOffer.bedrooms} Bedrooms
             </li>
             <li className="property__feature property__feature--adults">
-              Max {maxAdults} adults
+              Max {currentOffer.maxAdults} adults
             </li>
           </ul>
           <div className="property__price">
-            <b className="property__price-value">&euro;{price}</b>
+            <b className="property__price-value">&euro;{currentOffer.price}</b>
             <span className="property__price-text">&nbsp;night</span>
           </div>
           <div className="property__inside">
             <h2 className="property__inside-title">What&apos;s inside</h2>
             <ul className="property__inside-list">
               {
-                goods.map((insides, id) => {
-                  const keyValue = id + insides;
+                currentOffer.goods.map((insides:string) => {
+                  const keyValue = insides;
                   return (
                     <li key={keyValue} className="property__inside-item">
                       {insides}
@@ -86,21 +84,25 @@ function CardProperty({offers, selectedPoint}: CardPropertyProps):JSX.Element {
             <h2 className="property__host-title">Meet the host</h2>
             <div className="property__host-user user">
               <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                <img
+                  className="property__avatar user__avatar"
+                  src={currentOffer.host.avatarUrl}
+                  width="74"
+                  height="74"
+                  alt="Host avatar"
+                />
               </div>
               <span className="property__user-name">
-                Angelina
+                {currentOffer.host.name}
               </span>
+              {currentOffer.host.isPro &&
               <span className="property__user-status">
                 Pro
-              </span>
+              </span>}
             </div>
             <div className="property__description">
               <p className="property__text">
-                {description}
-              </p>
-              <p className="property__text">
-              An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                {currentOffer.description}
               </p>
             </div>
           </div>
@@ -108,7 +110,7 @@ function CardProperty({offers, selectedPoint}: CardPropertyProps):JSX.Element {
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
             <ReviewList reviews={reviews}/>
-            <ReviewForm />
+            <ReviewForm currentOffer={currentOffer} currentId={currentId}/>
 
           </section>
         </div>

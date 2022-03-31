@@ -1,23 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {api} from '../store';
 import { store } from '../store';
-import { OfferType } from '../types/offer';
-import { loadOffers, loadCurrentOffer, requireAutorization, setError, redirectToRoute } from './action';
-import { APIRoute, AppRoute, AutorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { OfferType, ReviewType } from '../types/offer';
+import { loadOffers, loadCurrentOffer, requireAutorization, redirectToRoute, loadReviews, setNearbyOffers, setNewReview } from './action';
+import { APIRoute, AppRoute, AutorizationStatus } from '../const';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handles';
-
-export const clearErrorAction = createAsyncThunk(
-  '/clearError',
-  () => {
-    setTimeout(
-      () => store.dispatch(setError('')),
-      TIMEOUT_SHOW_ERROR,
-    );
-  },
-);
+import {ReviewTypeData} from '../types/review';
 
 export const fetchOfferAction = createAsyncThunk(
   'data/fetchOffers',
@@ -34,8 +25,24 @@ export const fetchOfferAction = createAsyncThunk(
 export const loadCurrentOfferAction = createAsyncThunk(
   'data/loadCurrentOffer',
   async(id: number) => {
-    const {data} = await api.get<OfferType>(`${APIRoute.Offers}/${id}`);
-    store.dispatch(loadCurrentOffer(data));
+    try{
+      const {data} = await api.get<OfferType>(`${APIRoute.Offers}/${id}`);
+      store.dispatch(loadCurrentOffer(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchNearbyOffersAction = createAsyncThunk(
+  'data/fetchNearbyOffers',
+  async (id: number) => {
+    try {
+      const {data} = await api.get<OfferType[]>(`${APIRoute.Offers}/${id}${APIRoute.Nearby}`);
+      store.dispatch(setNearbyOffers(data));
+    } catch (error) {
+      errorHandle(error);
+    }
   },
 );
 
@@ -74,6 +81,30 @@ export const logoutAction = createAsyncThunk(
       await api.delete(APIRoute.Logout);
       dropToken();
       store.dispatch(requireAutorization(AutorizationStatus.NoAuth));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchReviewsAction = createAsyncThunk(
+  'data/fetchReviews',
+  async (id: number) => {
+    try {
+      const {data} = await api.get<ReviewType[]>(`${APIRoute.Reviews}/${id}`);
+      store.dispatch(loadReviews(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchSendReview = createAsyncThunk(
+  'data/fetchSendReviews',
+  async ({id, comment, rating}: ReviewTypeData) => {
+    try {
+      const {data} = await api.post<ReviewType[]>(`${APIRoute.Reviews}/${id}`, {comment, rating});
+      store.dispatch(setNewReview(data));
     } catch (error) {
       errorHandle(error);
     }
