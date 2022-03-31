@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useEffect, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import {useAppDispatch} from '../../hooks';
 import {fetchSendReview} from '../../store/api-actions';
 import Rating from '../rating-component/rating-component';
@@ -16,15 +16,7 @@ function ReviewForm({currentOffer, currentId}:ReviewFormProps):JSX.Element {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
-  useEffect(() => {
-    const submitButton: HTMLButtonElement | null =
-      document.querySelector('.form__submit');
-    if (rating !== 0 && comment.length >= 50) {
-      (submitButton as HTMLButtonElement).disabled = false;
-    } else {
-      (submitButton as HTMLButtonElement).disabled = true;
-    }
-  }, [rating, comment]);
+  const isDisabled = rating === 0 || comment.length < 50;
 
   const ratingChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
@@ -77,7 +69,7 @@ function ReviewForm({currentOffer, currentId}:ReviewFormProps):JSX.Element {
             and describe your stay with at least
           <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled >Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={isDisabled} >Submit</button>
       </div>
     </form>
   );

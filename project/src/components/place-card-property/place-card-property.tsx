@@ -14,7 +14,7 @@ type CardPropertyProps = {
 
 function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardPropertyProps):JSX.Element {
 
-  const currentId = currentOffer.id;
+  const { id: currentId } = currentOffer;
 
   return (
     <section className="property">

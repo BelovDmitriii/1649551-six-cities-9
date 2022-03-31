@@ -2,12 +2,11 @@ import {OfferType} from '../../types/offer';
 import Header from '../header/header';
 import CardProperty from '../place-card-property/place-card-property';
 import PlaceCardList from '../place-card-list/place-card-list';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useAppSelector} from '../../hooks';
 import {CardTypes} from '../../const';
 import {store} from '../../store';
 import {useParams} from 'react-router-dom';
-import {useEffect} from 'react';
 import {loadCurrentOfferAction, fetchReviewsAction, fetchNearbyOffersAction} from '../../store/api-actions';
 import NotFoundPage from '../not-found-page/not-found-page';
 
