@@ -4,6 +4,7 @@ import ReviewForm from '../review-form/reviews-form';
 import PlaceCardGallery from '../place-card-gallery/place-card-gallery';
 import Map from '../map/map';
 import {ratingWidth} from '../../utils';
+import { AutorizationStatus } from '../../const';
 
 type CardPropertyProps = {
   offers: OfferType[];
@@ -13,6 +14,8 @@ type CardPropertyProps = {
 };
 
 function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardPropertyProps):JSX.Element {
+
+  const isAuth = AutorizationStatus.Auth;
 
   const { id: currentId } = currentOffer;
 
@@ -110,7 +113,7 @@ function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardProper
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
             <ReviewList reviews={reviews}/>
-            <ReviewForm currentOffer={currentOffer} currentId={currentId}/>
+            {isAuth && <ReviewForm currentOffer={currentOffer} currentId={currentId}/>}
 
           </section>
         </div>
