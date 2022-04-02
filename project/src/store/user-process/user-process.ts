@@ -6,7 +6,7 @@ const initialState = {
   login: '',
 };
 
-const userProcess = createSlice({
+export const userProcess = createSlice({
   name: NameSpace.user,
   initialState,
   reducers: {
