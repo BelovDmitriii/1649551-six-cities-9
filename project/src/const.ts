@@ -125,3 +125,9 @@ export enum CardTypes {
   Favorites = 'favorites',
   Nearby = 'near-places',
 }
+
+export enum NameSpace {
+  data = 'DATA',
+  offers = 'OFFERS',
+  user = 'USER',
+}
