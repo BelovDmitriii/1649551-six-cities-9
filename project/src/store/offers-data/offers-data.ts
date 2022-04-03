@@ -10,7 +10,6 @@ type InitialStateType = {
   currentOffer: OfferType | null;
   isOfferLoaded: boolean;
   isCurrentOfferLoaded: boolean;
-  favoriteOffers: OfferType[];
 }
 
 const initialState: InitialStateType = {
@@ -21,7 +20,6 @@ const initialState: InitialStateType = {
   isOfferLoaded: false,
   isDataLoaded: false,
   isCurrentOfferLoaded: false,
-  favoriteOffers:[],
 };
 
 export const offersData = createSlice({
@@ -31,9 +29,6 @@ export const offersData = createSlice({
     loadOffers: (state, action) => {
       state.offers = action.payload;
       state.isOfferLoaded = true;
-    },
-    loadFavoriteOffers: (state, action) => {
-      state.favoriteOffers = action.payload;
     },
     loadNearbyOffers: (state, action) => {
       state.nearbyOffers = action.payload;
@@ -49,4 +44,4 @@ export const offersData = createSlice({
   },
 });
 
-export const {loadOffers, loadFavoriteOffers, loadNearbyOffers, loadReviews, loadCurrentOffer} = offersData.actions;
+export const {loadOffers, loadNearbyOffers, loadReviews, loadCurrentOffer} = offersData.actions;
