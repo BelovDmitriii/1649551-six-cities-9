@@ -7,7 +7,7 @@ import {AppRoute} from '../../const';
 function HeaderNav(): JSX.Element {
 
   const dispatch = useAppDispatch();
-  const { authorizationStatus } = useAppSelector((state) => state);
+  const { authorizationStatus, user } = useAppSelector(({USER}) => USER);
 
 
   const getNavItems = (status: AutorizationStatus): JSX.Element => {
@@ -22,7 +22,7 @@ function HeaderNav(): JSX.Element {
               >
                 <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                 <span className="header__user-name user__name">
-                  Oliver.conner@gmail.com
+                  {user?.name}
                 </span>
               </Link>
             </li>
