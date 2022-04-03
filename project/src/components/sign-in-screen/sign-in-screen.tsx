@@ -8,7 +8,7 @@ import { AppRoute, AutorizationStatus } from '../../const';
 function SignInScreen(): JSX.Element {
 
   const {authorizationStatus} = useAppSelector(({USER}) => USER);
-  const {currentCity} = useAppSelector(({OFFER}) => OFFER);
+  const {currentCity} = useAppSelector(({OFFERS}) => OFFERS);
 
   const dispatch = useAppDispatch();
 

@@ -17,11 +17,11 @@ function MainPage(): JSX.Element {
     setSelectedPoint(offer);
   };
 
-  const offers = useAppSelector(({DATA}) => DATA);
-  const currentCity = useAppSelector(({OFFERS}) => OFFERS);
-  const sortType = useAppSelector(({OFFERS}) => OFFERS);
-  const {isOfferLoaded} = useAppSelector(({ DATA }) => DATA.isOfferLoaded);
-  const filteredOffers = filterCity(currentCity, offers);
+  const offers = useAppSelector(({DATA}) => DATA.offers);
+  const currentCity = useAppSelector(({OFFERS}) => OFFERS.currentCity);
+  const sortType = useAppSelector(({OFFERS}) => OFFERS.sortType);
+  const {isOfferLoaded} = useAppSelector(({ DATA }) => DATA);
+  const filteredOffers = filterCity( offers, currentCity);
   const sortedOffers = sortOffers(filteredOffers, sortType);
   const placesCount: number = filteredOffers.length;
 

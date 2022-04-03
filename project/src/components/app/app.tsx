@@ -15,8 +15,8 @@ const isCheckedAuth = (authorizationStatus: AutorizationStatus): boolean =>
   authorizationStatus === AutorizationStatus.Unknown;
 
 function App(): JSX.Element {
-  const {authorizationStatus} = useAppSelector(({ USER }) => USER.authorizationStatus);
-  const {isOfferLoaded} = useAppSelector(({ DATA }) => DATA.isOfferLoaded);
+  const {authorizationStatus} = useAppSelector(({ USER }) => USER);
+  const {isOfferLoaded} = useAppSelector(({ DATA }) => DATA);
 
   if (isCheckedAuth(authorizationStatus) || !isOfferLoaded) {
     return (

@@ -5,6 +5,7 @@ import PlaceCardGallery from '../place-card-gallery/place-card-gallery';
 import Map from '../map/map';
 import {ratingWidth} from '../../utils';
 import { AutorizationStatus } from '../../const';
+import {useAppSelector} from '../../hooks';
 
 type CardPropertyProps = {
   offers: OfferType[];
@@ -14,8 +15,9 @@ type CardPropertyProps = {
 };
 
 function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardPropertyProps):JSX.Element {
+  const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
 
-  const isAuth = AutorizationStatus.Auth;
+  const isAuth = authorizationStatus === AutorizationStatus.Auth;
 
   const { id: currentId } = currentOffer;
 
