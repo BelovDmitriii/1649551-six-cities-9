@@ -4,7 +4,6 @@ import { OfferType, ReviewType } from '../../types/offer';
 
 type InitialStateType = {
   offers: OfferType[];
-  filteredOffers: OfferType[];
   nearbyOffers: OfferType[];
   reviews: ReviewType[];
   isDataLoaded: boolean;
@@ -16,7 +15,6 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
   offers: [],
-  filteredOffers:[],
   nearbyOffers: [],
   currentOffer: null,
   reviews: [],

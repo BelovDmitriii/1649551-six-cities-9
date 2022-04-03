@@ -1,16 +1,23 @@
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { AppRoute } from '../../const';
+import { AppRoute, AutorizationStatus } from '../../const';
 
 
 function SignInScreen(): JSX.Element {
+
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const {currentCity} = useAppSelector(({OFFER}) => OFFER);
 
   const dispatch = useAppDispatch();
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+
+  if (authorizationStatus === AutorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Main} />;
+  }
 
   const loginChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault();
@@ -77,7 +84,7 @@ function SignInScreen(): JSX.Element {
         <section className="locations locations--login locations--current">
           <div className="locations__item">
             <Link to={AppRoute.Main} className="locations__item-link" >
-              <span>Amsterdam</span>
+              <span>{currentCity.name}</span>
             </Link>
           </div>
         </section>
