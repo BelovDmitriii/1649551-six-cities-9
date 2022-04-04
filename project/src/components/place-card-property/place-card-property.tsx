@@ -116,7 +116,7 @@ function CardProperty({currentOffer,selectedPoint, offers, reviews, nearbyOffers
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
             <ReviewList reviews={reviews}/>
-            {isAuth && <ReviewForm currentOffer={currentOffer} currentId={currentId}/>}
+            {isAuth ? <ReviewForm currentOffer={currentOffer} currentId={currentId}/> : ''}
 
           </section>
         </div>
