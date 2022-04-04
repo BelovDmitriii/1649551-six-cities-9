@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../../hooks';
-import { setSortType } from '../../store/action';
+import { setSortType } from '../../store/offers-process/offers-process';
 
 type PlacesSortOptionProps = {
   activeOption: string;

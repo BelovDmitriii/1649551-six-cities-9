@@ -30,7 +30,7 @@ export const offersData = createSlice({
       state.offers = action.payload;
       state.isOfferLoaded = true;
     },
-    loadNearbyOffers: (state, action) => {
+    setNearbyOffers: (state, action) => {
       state.nearbyOffers = action.payload;
     },
     loadReviews: (state, action) => {
@@ -41,7 +41,10 @@ export const offersData = createSlice({
       state.currentOffer = action.payload;
       state.isCurrentOfferLoaded = true;
     },
+    setNewReview: (state, action) => {
+      state.reviews = action.payload;
+    },
   },
 });
 
-export const {loadOffers, loadNearbyOffers, loadReviews, loadCurrentOffer} = offersData.actions;
+export const {loadOffers, setNearbyOffers, loadReviews, loadCurrentOffer, setNewReview} = offersData.actions;

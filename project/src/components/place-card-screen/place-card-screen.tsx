@@ -23,8 +23,6 @@ function PlaceCardScreen(): JSX.Element {
 
   const {id} = useParams<{id: string}>();
 
-  // const currentOffer = filteredOffers.find((offer) => offer.id === Number(id));
-
   useEffect(() => {
     store.dispatch(loadCurrentOfferAction(Number(id)));
     store.dispatch(fetchReviewsAction(Number(id)));

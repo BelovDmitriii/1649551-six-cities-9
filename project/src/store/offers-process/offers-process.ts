@@ -20,7 +20,9 @@ export const offersProcess = createSlice({
   initialState,
   reducers: {
     setCity: (state, action) => {
-      state.currentCity = action.payload;
+      if (state.currentCity.name !== action.payload.name) {
+        state.currentCity = action.payload;
+      }
     },
     getOfferId: (state, action) => {
       state.offerId = action.payload;

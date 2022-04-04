@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AppRoute, AutorizationStatus } from '../../const';
+import {getUserLogin} from '../../store/user-process/user-process';
 
 
 function SignInScreen(): JSX.Element {
@@ -40,6 +41,7 @@ function SignInScreen(): JSX.Element {
           password: password,
         }),
       );
+      dispatch(getUserLogin(login));
     }
   };
 

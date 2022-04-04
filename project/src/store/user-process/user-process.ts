@@ -13,10 +13,10 @@ export const userProcess = createSlice({
     requireAuthorization: (state, action) => {
       state.authorizationStatus = action.payload;
     },
-    authorization: (state, action) => {
+    getUserLogin: (state, action) => {
       state.user = action.payload;
     },
   },
 });
 
-export const {requireAuthorization, authorization} = userProcess.actions;
+export const {requireAuthorization, getUserLogin} = userProcess.actions;
