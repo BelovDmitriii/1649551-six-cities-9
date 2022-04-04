@@ -6,21 +6,24 @@ import LocationList from '../location-list/location-list';
 import { useAppSelector } from '../../hooks';
 import {useState} from 'react';
 import PlacesSort from '../places-sort/places-sort';
-import { sortOffers } from '../../utils';
+import { sortOffers, filterCity } from '../../utils';
 import {CardTypes} from '../../const';
 import Spinner from '../spinner-component/spinner-component';
 
 function MainPage(): JSX.Element {
 
-  const {filteredOffers, currentCity, sortType, isDataLoaded} = useAppSelector((state) => state);
-
-  const sortedOffers = sortOffers(filteredOffers, sortType);
-
-  const placesCount: number = filteredOffers.length;
   const [selectedPoint, setSelectedPoint] = useState<OfferType | null>(null);
   const onPlaceCardHover = (offer: OfferType | null) => {
     setSelectedPoint(offer);
   };
+
+  const offers = useAppSelector(({DATA}) => DATA.offers);
+  const currentCity = useAppSelector(({OFFERS}) => OFFERS.currentCity);
+  const sortType = useAppSelector(({OFFERS}) => OFFERS.sortType);
+  const {isOfferLoaded} = useAppSelector(({ DATA }) => DATA);
+  const filteredOffers = filterCity( offers, currentCity);
+  const sortedOffers = sortOffers(filteredOffers, sortType);
+  const placesCount: number = filteredOffers.length;
 
   return (
     <>
@@ -30,7 +33,7 @@ function MainPage(): JSX.Element {
 
       <div className="page page--gray page--main">
         <Header />
-        {!isDataLoaded ? <Spinner /> :
+        {!isOfferLoaded ? <Spinner /> :
           <main className="page__main page__main--index">
             <h1 className="visually-hidden">Cities</h1>
             <div className="tabs">

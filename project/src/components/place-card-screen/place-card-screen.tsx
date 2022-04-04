@@ -2,14 +2,14 @@ import {OfferType} from '../../types/offer';
 import Header from '../header/header';
 import CardProperty from '../place-card-property/place-card-property';
 import PlaceCardList from '../place-card-list/place-card-list';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useAppSelector} from '../../hooks';
-import {CardTypes} from '../../const';
 import {store} from '../../store';
 import {useParams} from 'react-router-dom';
-import {useEffect} from 'react';
 import {loadCurrentOfferAction, fetchReviewsAction, fetchNearbyOffersAction} from '../../store/api-actions';
 import NotFoundPage from '../not-found-page/not-found-page';
+import { CardTypes } from '../../const';
+import Spinner from '../spinner-component/spinner-component';
 
 function PlaceCardScreen(): JSX.Element {
 
@@ -19,17 +19,21 @@ function PlaceCardScreen(): JSX.Element {
     setSelectedPoint(offer);
   };
 
-  const {filteredOffers, reviews, nearbyOffers} = useAppSelector((state) => state);
+  const { offers, currentOffer, reviews, nearbyOffers, isCurrentOfferLoaded} = useAppSelector(({DATA}) => DATA);
 
   const {id} = useParams<{id: string}>();
-
-  const currentOffer = filteredOffers.find((offer) => offer.id === Number(id));
 
   useEffect(() => {
     store.dispatch(loadCurrentOfferAction(Number(id)));
     store.dispatch(fetchReviewsAction(Number(id)));
     store.dispatch(fetchNearbyOffersAction(Number(id)));
   }, [id]);
+
+  if (isCurrentOfferLoaded === false) {
+    return (
+      <Spinner />
+    );
+  }
 
   if (!currentOffer) {
     return <NotFoundPage />;
@@ -40,7 +44,7 @@ function PlaceCardScreen(): JSX.Element {
       <Header />
       {currentOffer && (
         <>
-          <CardProperty currentOffer={currentOffer} selectedPoint={selectedPoint} offers={filteredOffers} reviews={reviews}/>
+          <CardProperty currentOffer={currentOffer} selectedPoint={selectedPoint} offers={offers} reviews={reviews} nearbyOffers={nearbyOffers}/>
           <main className="page__main page__main--property">
             <div className="container">
               <section className="near-places places">

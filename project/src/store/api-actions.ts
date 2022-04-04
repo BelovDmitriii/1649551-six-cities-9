@@ -2,7 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {api} from '../store';
 import { store } from '../store';
 import { OfferType, ReviewType } from '../types/offer';
-import { loadOffers, loadCurrentOffer, requireAutorization, redirectToRoute, loadReviews, setNearbyOffers, setNewReview } from './action';
+import { redirectToRoute } from './action';
+import { requireAuthorization } from './user-process/user-process';
+import {loadOffers, setNearbyOffers, loadReviews, loadCurrentOffer, setNewReview} from './offers-data/offers-data';
 import { APIRoute, AppRoute, AutorizationStatus } from '../const';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken } from '../services/token';
@@ -51,10 +53,10 @@ export const checkAuthAction = createAsyncThunk(
   async () => {
     try {
       await api.get(APIRoute.Login);
-      store.dispatch(requireAutorization(AutorizationStatus.Auth));
+      store.dispatch(requireAuthorization(AutorizationStatus.Auth));
     } catch(error) {
       errorHandle(error);
-      store.dispatch(requireAutorization(AutorizationStatus.NoAuth));
+      store.dispatch(requireAuthorization(AutorizationStatus.NoAuth));
     }
   },
 );
@@ -65,11 +67,11 @@ export const loginAction = createAsyncThunk(
     try {
       const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
       saveToken(token);
-      store.dispatch(requireAutorization(AutorizationStatus.Auth));
+      store.dispatch(requireAuthorization(AutorizationStatus.Auth));
       store.dispatch(redirectToRoute(AppRoute.Main));
     } catch (error) {
       errorHandle(error);
-      store.dispatch(requireAutorization(AutorizationStatus.NoAuth));
+      store.dispatch(requireAuthorization(AutorizationStatus.NoAuth));
     }
   },
 );
@@ -80,7 +82,7 @@ export const logoutAction = createAsyncThunk(
     try {
       await api.delete(APIRoute.Logout);
       dropToken();
-      store.dispatch(requireAutorization(AutorizationStatus.NoAuth));
+      store.dispatch(requireAuthorization(AutorizationStatus.NoAuth));
     } catch (error) {
       errorHandle(error);
     }
