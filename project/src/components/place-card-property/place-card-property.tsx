@@ -9,12 +9,13 @@ import {useAppSelector} from '../../hooks';
 
 type CardPropertyProps = {
   offers: OfferType[];
-  selectedPoint: OfferType | null;
   currentOffer: OfferType;
   reviews: ReviewType[];
+  nearbyOffers: OfferType[];
+  selectedPoint:  OfferType | null;
 };
 
-function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardPropertyProps):JSX.Element {
+function CardProperty({currentOffer,selectedPoint, offers, reviews, nearbyOffers}: CardPropertyProps):JSX.Element {
   const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
 
   const isAuth = authorizationStatus === AutorizationStatus.Auth;
@@ -121,7 +122,7 @@ function CardProperty({currentOffer, selectedPoint, offers, reviews}: CardProper
         </div>
       </div>
       <section className="property__map map" style={{margin: '0 auto', width: '80%', background:'none'}}>
-        <Map city={currentOffer.city} points={offers} selectedPoint={selectedPoint} height={500}/>
+        <Map city={currentOffer.city} points={[...nearbyOffers, currentOffer]} selectedPoint={null} height={500}/>
       </section>
     </section>
   );

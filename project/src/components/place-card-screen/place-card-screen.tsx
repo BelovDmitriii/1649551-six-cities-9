@@ -44,7 +44,7 @@ function PlaceCardScreen(): JSX.Element {
       <Header />
       {currentOffer && (
         <>
-          <CardProperty currentOffer={currentOffer} selectedPoint={selectedPoint} offers={offers} reviews={reviews}/>
+          <CardProperty currentOffer={currentOffer} selectedPoint={selectedPoint} offers={offers} reviews={reviews} nearbyOffers={nearbyOffers}/>
           <main className="page__main page__main--property">
             <div className="container">
               <section className="near-places places">
