@@ -34,3 +34,8 @@ export type Favorite = {
 }
 
 export default Favorite;
+
+export type FavoriteFlagType = {
+  id: number,
+  flag: number,
+}

@@ -11,6 +11,8 @@ import { dropToken, saveToken } from '../services/token';
 import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handles';
 import {ReviewTypeData} from '../types/review';
+import { fetchFavorites } from './favorite-process/favorite-process';
+import { FavoriteFlagType } from '../types/favorite';
 
 export const fetchOfferAction = createAsyncThunk(
   'data/fetchOffers',
@@ -107,6 +109,31 @@ export const fetchSendReview = createAsyncThunk(
     try {
       const {data} = await api.post<ReviewType[]>(`${APIRoute.Reviews}/${id}`, {comment, rating});
       store.dispatch(setNewReview(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const loadFavoriteAction = createAsyncThunk(
+  'data/favorite',
+  async () => {
+    try {
+      const { data } = await api.get<OfferType[]>(APIRoute.Favorite);
+      store.dispatch(fetchFavorites(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+
+export const toggleFavoriteAction = createAsyncThunk(
+  'data/toggleFavorite',
+  async ({ id, flag }: FavoriteFlagType) => {
+    try {
+      await api.post<OfferType[]>(`${APIRoute.Favorite}/${id}/${flag}`);
+      store.dispatch(loadFavoriteAction());
     } catch (error) {
       errorHandle(error);
     }

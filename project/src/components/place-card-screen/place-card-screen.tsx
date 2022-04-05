@@ -3,23 +3,26 @@ import Header from '../header/header';
 import CardProperty from '../place-card-property/place-card-property';
 import PlaceCardList from '../place-card-list/place-card-list';
 import {useState, useEffect} from 'react';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {store} from '../../store';
 import {useParams} from 'react-router-dom';
 import {loadCurrentOfferAction, fetchReviewsAction, fetchNearbyOffersAction} from '../../store/api-actions';
 import NotFoundPage from '../not-found-page/not-found-page';
-import { CardTypes } from '../../const';
 import Spinner from '../spinner-component/spinner-component';
+// import { redirectToRoute } from '../../store/action';
+// import { AppRoute, AutorizationStatus } from '../../const';
 
 function PlaceCardScreen(): JSX.Element {
 
   const [selectedPoint, setSelectedPoint] = useState<OfferType | null>(null);
+  const dispatch = useAppDispatch();
 
   const onPlaceCardHover = (offer: OfferType | null) => {
     setSelectedPoint(offer);
   };
 
   const { offers, currentOffer, reviews, nearbyOffers, isCurrentOfferLoaded} = useAppSelector(({DATA}) => DATA);
+  //const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
 
   const {id} = useParams<{id: string}>();
 
@@ -27,7 +30,7 @@ function PlaceCardScreen(): JSX.Element {
     store.dispatch(loadCurrentOfferAction(Number(id)));
     store.dispatch(fetchReviewsAction(Number(id)));
     store.dispatch(fetchNearbyOffersAction(Number(id)));
-  }, [id]);
+  }, [id, dispatch]);
 
   if (isCurrentOfferLoaded === false) {
     return (
@@ -42,7 +45,7 @@ function PlaceCardScreen(): JSX.Element {
   return (
     <div className="page">
       <Header />
-      {currentOffer && (
+      {currentOffer !==null && (
         <>
           <CardProperty currentOffer={currentOffer} selectedPoint={selectedPoint} offers={offers} reviews={reviews} nearbyOffers={nearbyOffers}/>
           <main className="page__main page__main--property">
@@ -51,7 +54,7 @@ function PlaceCardScreen(): JSX.Element {
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
                 <div className="near-places__list places__list">
 
-                  <PlaceCardList offers={nearbyOffers} onPlaceCardHover={onPlaceCardHover} typeCard={CardTypes.Nearby} />
+                  <PlaceCardList offers={nearbyOffers} onPlaceCardHover={onPlaceCardHover} />
 
                 </div>
               </section>
