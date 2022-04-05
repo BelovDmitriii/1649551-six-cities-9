@@ -9,8 +9,6 @@ import {useParams} from 'react-router-dom';
 import {loadCurrentOfferAction, fetchReviewsAction, fetchNearbyOffersAction} from '../../store/api-actions';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Spinner from '../spinner-component/spinner-component';
-// import { redirectToRoute } from '../../store/action';
-// import { AppRoute, AutorizationStatus } from '../../const';
 
 function PlaceCardScreen(): JSX.Element {
 
@@ -22,7 +20,6 @@ function PlaceCardScreen(): JSX.Element {
   };
 
   const { offers, currentOffer, reviews, nearbyOffers, isCurrentOfferLoaded} = useAppSelector(({DATA}) => DATA);
-  //const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
 
   const {id} = useParams<{id: string}>();
 
