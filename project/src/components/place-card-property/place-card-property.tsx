@@ -4,8 +4,12 @@ import ReviewForm from '../review-form/reviews-form';
 import PlaceCardGallery from '../place-card-gallery/place-card-gallery';
 import Map from '../map/map';
 import {ratingWidth} from '../../utils';
-import { AutorizationStatus } from '../../const';
-import {useAppSelector} from '../../hooks';
+import { AppRoute, AutorizationStatus } from '../../const';
+import {useAppSelector, useAppDispatch} from '../../hooks';
+import BookmarkButton from '../bookmark-button/bookmark-button';
+import {useState} from 'react';
+import { toggleFavoriteAction } from '../../store/api-actions';
+import { redirectToRoute } from '../../store/action';
 
 type CardPropertyProps = {
   offers: OfferType[];
@@ -17,6 +21,21 @@ type CardPropertyProps = {
 
 function CardProperty({currentOffer,selectedPoint, offers, reviews, nearbyOffers}: CardPropertyProps):JSX.Element {
   const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
+  const [isOfferFavorite, setToggleFavorite] = useState(currentOffer.isFavorite);
+  const dispatch = useAppDispatch();
+  const postFavoriteFlag = currentOffer.isFavorite ? 0 : 1;
+
+  const handleFavoriteClick = () => {
+    if (authorizationStatus !== AutorizationStatus.Auth) {
+      dispatch(redirectToRoute(AppRoute.SignIn));
+    }
+    dispatch(toggleFavoriteAction({
+      id: currentOffer.id,
+      flag: postFavoriteFlag,
+    }));
+
+    setToggleFavorite(!isOfferFavorite);
+  };
 
   const isAuth = authorizationStatus === AutorizationStatus.Auth;
 
@@ -38,16 +57,12 @@ function CardProperty({currentOffer,selectedPoint, offers, reviews, nearbyOffers
             <h1 className="property__name">
               {currentOffer.title}
             </h1>
-            <button className={
-              `property__bookmark-button button
-              ${currentOffer.isFavorite ? 'property__bookmark-button--active' : ''}`
-            } type="button"
-            >
-              <svg className="property__bookmark-icon" width="31" height="33">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <BookmarkButton
+              isFavorite={currentOffer.isFavorite}
+              handleBookmarkButtonClick={handleFavoriteClick}
+              isSmall={false}
+              prefix={'property'}
+            />
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
@@ -116,13 +131,13 @@ function CardProperty({currentOffer,selectedPoint, offers, reviews, nearbyOffers
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 
             <ReviewList reviews={reviews}/>
-            {isAuth && <ReviewForm currentOffer={currentOffer} currentId={currentId}/>}
+            {isAuth ? <ReviewForm currentOffer={currentOffer} currentId={currentId}/> : ''}
 
           </section>
         </div>
       </div>
       <section className="property__map map" style={{margin: '0 auto', width: '80%', background:'none'}}>
-        <Map city={currentOffer.city} points={[...nearbyOffers, currentOffer]} selectedPoint={null} height={500}/>
+        <Map city={currentOffer.city} points={[...nearbyOffers, currentOffer]} selectedPoint={currentOffer} height={500}/>
       </section>
     </section>
   );

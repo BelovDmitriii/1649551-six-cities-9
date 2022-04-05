@@ -1,12 +1,19 @@
 import FavoriteCardList from '../favorite-card-list/favorite-card-list';
 import EmptyFavoriteList from '../empty-favorite-list/empty-favorite-list';
 import Header from '../header/header';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import FooterComponent from '../footer-component/footer-component';
+import { loadFavoriteAction } from '../../store/api-actions';
+import { useEffect } from 'react';
 
 function FavoritesScreen (): JSX.Element {
 
   const {favorites} = useAppSelector (({FAVORITES}) => FAVORITES);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadFavoriteAction());
+  }, [dispatch]);
 
   return (
     <div className="page">
