@@ -11,7 +11,6 @@ import { dropToken, saveToken } from '../services/token';
 import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handles';
 import {ReviewTypeData} from '../types/review';
-//import { fetchFavorites } from './favorite-process/favorite-process';
 import { FavoriteFlagType } from '../types/favorite';
 
 export const fetchOfferAction = createAsyncThunk(

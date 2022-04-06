@@ -27,7 +27,7 @@ function BookmarkButton({ handleBookmarkButtonClick, isFavorite, isSmall, prefix
       onClick={handleBookmarkButtonClick}
     >
       <svg
-        className="place-card__bookmark-icon"
+        className={`${prefix}__bookmark-icon`}
         width={isSmall ? ButtonSize.small.width : ButtonSize.small.heigth}
         height={isSmall ? ButtonSize.big.width : ButtonSize.big.heigth}
       >

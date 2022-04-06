@@ -22,22 +22,20 @@ function CardProperty({currentOffer, reviews, nearbyOffers}: CardPropertyProps):
   const [isOfferFavorite, setToggleFavorite] = useState(currentOffer.isFavorite);
   const dispatch = useAppDispatch();
   const postFavoriteFlag = currentOffer.isFavorite ? 0 : 1;
+  const isAuth = authorizationStatus === AutorizationStatus.Auth;
+  const { id: currentId } = currentOffer;
 
   const handleFavoriteClick = () => {
-    if (authorizationStatus !== AutorizationStatus.Auth) {
+    if (!isAuth) {
       dispatch(redirectToRoute(AppRoute.SignIn));
     }
     dispatch(toggleFavoriteAction({
-      id: currentOffer.id,
+      id: currentId,
       flag: postFavoriteFlag,
     }));
 
     setToggleFavorite(!isOfferFavorite);
   };
-
-  const isAuth = authorizationStatus === AutorizationStatus.Auth;
-
-  const { id: currentId } = currentOffer;
 
   return (
     <section className="property">
@@ -134,7 +132,7 @@ function CardProperty({currentOffer, reviews, nearbyOffers}: CardPropertyProps):
           </section>
         </div>
       </div>
-      <div style = {{ width:'80%', margin: '0 auto'}}>
+      <div style = {{ width:'80%', margin:'0 auto', marginBottom:'50px'}}>
         <Map city={currentOffer.city} points={[...nearbyOffers, currentOffer]} selectedPoint={currentOffer} className={'property__map map'} height={579}/>
       </div>
     </section>

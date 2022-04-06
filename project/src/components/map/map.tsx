@@ -50,6 +50,7 @@ function Map({city, points, selectedPoint, className,height}:MapProps) {
     <section
       className={className}
       ref = {mapRef}
+      style = {{height:`${height}px`}}
     >
     </section>
   );
