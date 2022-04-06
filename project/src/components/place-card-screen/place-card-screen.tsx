@@ -19,7 +19,7 @@ function PlaceCardScreen(): JSX.Element {
     setSelectedPoint(offer);
   };
 
-  const { offers, currentOffer, reviews, nearbyOffers, isCurrentOfferLoaded, favorites} = useAppSelector(({DATA}) => DATA);
+  const { currentOffer, reviews, nearbyOffers, isCurrentOfferLoaded} = useAppSelector(({DATA}) => DATA);
 
   const {id} = useParams<{id: string}>();
 
@@ -27,7 +27,7 @@ function PlaceCardScreen(): JSX.Element {
     store.dispatch(loadCurrentOfferAction(Number(id)));
     store.dispatch(fetchReviewsAction(Number(id)));
     store.dispatch(fetchNearbyOffersAction(Number(id)));
-  }, [id, dispatch, favorites]);
+  }, [id, dispatch, selectedPoint]);
 
   if (isCurrentOfferLoaded === false) {
     return (
@@ -44,16 +44,12 @@ function PlaceCardScreen(): JSX.Element {
       <Header />
       {currentOffer !==null && (
         <>
-          <CardProperty currentOffer={currentOffer} selectedPoint={selectedPoint} offers={offers} reviews={reviews} nearbyOffers={nearbyOffers}/>
+          <CardProperty currentOffer={currentOffer}  reviews={reviews} nearbyOffers={nearbyOffers}/>
           <main className="page__main page__main--property">
             <div className="container">
               <section className="near-places places">
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
-                <div className="near-places__list places__list">
-
-                  <PlaceCardList offers={nearbyOffers} onPlaceCardHover={onPlaceCardHover} />
-
-                </div>
+                <PlaceCardList className="near-places__list places__list" offers={nearbyOffers} onPlaceCardHover={onPlaceCardHover} />
               </section>
             </div>
           </main>

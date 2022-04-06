@@ -9,6 +9,7 @@ type MapProps = {
   city: City;
   points: OfferType[];
   selectedPoint: OfferType | null;
+  className: string;
   height: number;
 }
 
@@ -24,7 +25,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [ANCHOR_RELATIVE_X, ANCHOR_RELATIVE_Y],
 });
 
-function Map({city, points, selectedPoint, height}:MapProps) {
+function Map({city, points, selectedPoint, className,height}:MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -43,14 +44,14 @@ function Map({city, points, selectedPoint, height}:MapProps) {
         ).addTo(map);
       });
     }
-  }, [map, points, selectedPoint]);
+  }, [map, points,selectedPoint]);
 
   return (
-    <div
-      style = {{height:`${height}px`}}
+    <section
+      className={className}
       ref = {mapRef}
     >
-    </div>
+    </section>
   );
 }
 
