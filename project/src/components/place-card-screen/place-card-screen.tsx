@@ -19,7 +19,7 @@ function PlaceCardScreen(): JSX.Element {
     setSelectedPoint(offer);
   };
 
-  const { offers, currentOffer, reviews, nearbyOffers, isCurrentOfferLoaded} = useAppSelector(({DATA}) => DATA);
+  const { offers, currentOffer, reviews, nearbyOffers, isCurrentOfferLoaded, favorites} = useAppSelector(({DATA}) => DATA);
 
   const {id} = useParams<{id: string}>();
 
@@ -27,7 +27,7 @@ function PlaceCardScreen(): JSX.Element {
     store.dispatch(loadCurrentOfferAction(Number(id)));
     store.dispatch(fetchReviewsAction(Number(id)));
     store.dispatch(fetchNearbyOffersAction(Number(id)));
-  }, [id, dispatch]);
+  }, [id, dispatch, favorites]);
 
   if (isCurrentOfferLoaded === false) {
     return (
