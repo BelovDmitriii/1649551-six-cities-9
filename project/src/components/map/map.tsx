@@ -7,7 +7,7 @@ import useMap from '../../hooks/useMap';
 
 type MapProps = {
   city: City;
-  points: OfferType[];
+  currentOffers: OfferType[];
   selectedPoint: OfferType | null;
   className: string;
   height: number;
@@ -25,26 +25,35 @@ const currentCustomIcon = new Icon({
   iconAnchor: [ANCHOR_RELATIVE_X, ANCHOR_RELATIVE_Y],
 });
 
-function Map({city, points, selectedPoint, className,height}:MapProps) {
+const markers:Marker[] = [];
+
+function Map({city, currentOffers, selectedPoint, className,height}:MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
   useEffect(() => {
     if (map) {
-      points.forEach((point) => {
+      currentOffers.forEach((currentPoint) => {
         const marker = new Marker(
           {
-            lat: point.location.latitude,
-            lng: point.location.longitude,
+            lat: currentPoint.location.latitude,
+            lng: currentPoint.location.longitude,
           });
-        marker.setIcon(
-          selectedPoint !== null && point.id === selectedPoint.id
-            ? currentCustomIcon
-            : defaultCustomIcon,
-        ).addTo(map);
+
+        marker
+          .setIcon(
+            selectedPoint !== null && currentPoint.id === selectedPoint.id
+              ? currentCustomIcon
+              : defaultCustomIcon)
+          .addTo(map);
+        markers.push(marker);
       });
     }
-  }, [map, points,selectedPoint]);
+    return () => {
+      markers.forEach((marker) => marker.remove());
+      markers.length = 0;
+    };
+  });
 
   return (
     <section

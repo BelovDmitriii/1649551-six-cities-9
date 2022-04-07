@@ -51,7 +51,7 @@ function MainPage(): JSX.Element {
                     <PlaceCardList className="cities__places-list places__list tabs__content" offers={sortedOffers} onPlaceCardHover={onPlaceCardHover} />
                   </section>
                   <div className="cities__right-section">
-                    <Map city={currentCity} points={filteredOffers} selectedPoint={selectedPoint} key={currentCity.name} className='cities__map map'  height={682}/>
+                    <Map city={currentCity} currentOffers={filteredOffers} selectedPoint={selectedPoint} key={currentCity.name} className='cities__map map'  height={682}/>
                   </div>
                 </div> :
                 <MainPageEmpty city={currentCity.name}/>}

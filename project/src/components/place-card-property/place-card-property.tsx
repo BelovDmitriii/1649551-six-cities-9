@@ -133,7 +133,7 @@ function CardProperty({currentOffer, reviews, nearbyOffers}: CardPropertyProps):
         </div>
       </div>
       <div style = {{ width:'80%', margin:'0 auto', marginBottom:'50px'}}>
-        <Map city={currentOffer.city} points={[...nearbyOffers, currentOffer]} selectedPoint={currentOffer} className={'property__map map'} height={579}/>
+        <Map city={currentOffer.city} currentOffers={[...nearbyOffers, currentOffer]} selectedPoint={currentOffer} className={'property__map map'} height={579}/>
       </div>
     </section>
   );
