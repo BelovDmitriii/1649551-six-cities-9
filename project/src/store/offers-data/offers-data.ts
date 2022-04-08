@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
+import Favorite from '../../types/favorite';
 import { OfferType, ReviewType } from '../../types/offer';
 
 type InitialStateType = {
@@ -10,6 +11,8 @@ type InitialStateType = {
   currentOffer: OfferType | null;
   isOfferLoaded: boolean;
   isCurrentOfferLoaded: boolean;
+  favorites: Favorite[];
+  favoritesLoaded: boolean;
 }
 
 const initialState: InitialStateType = {
@@ -20,6 +23,8 @@ const initialState: InitialStateType = {
   isOfferLoaded: false,
   isDataLoaded: false,
   isCurrentOfferLoaded: false,
+  favorites: [],
+  favoritesLoaded: false,
 };
 
 export const offersData = createSlice({
@@ -44,7 +49,11 @@ export const offersData = createSlice({
     setNewReview: (state, action) => {
       state.reviews = action.payload;
     },
+    fetchFavorites: (state, action) => {
+      state.favorites = action.payload;
+      state.favoritesLoaded = true;
+    },
   },
 });
 
-export const {loadOffers, setNearbyOffers, loadReviews, loadCurrentOffer, setNewReview} = offersData.actions;
+export const {loadOffers, setNearbyOffers, loadReviews, loadCurrentOffer, setNewReview, fetchFavorites} = offersData.actions;

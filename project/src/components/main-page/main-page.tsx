@@ -47,17 +47,11 @@ function MainPage(): JSX.Element {
                   <section className="cities__places places">
                     <h2 className="visually-hidden">Places</h2>
                     <b className="places__found">{placesCount} places to stay in {currentCity.name}</b>
-
                     <PlacesSort sortType={sortType} />
-
-                    <div className="cities__places-list places__list tabs__content">
-                      <PlaceCardList offers={sortedOffers} onPlaceCardHover={onPlaceCardHover} />
-                    </div>
+                    <PlaceCardList className="cities__places-list places__list tabs__content" offers={sortedOffers} onPlaceCardHover={onPlaceCardHover} />
                   </section>
                   <div className="cities__right-section">
-                    <section className="cities__map map">
-                      <Map city={currentCity} points={filteredOffers} selectedPoint={selectedPoint} key={currentCity.name} height={682} />
-                    </section>
+                    <Map city={currentCity} currentOffers={filteredOffers} selectedPoint={selectedPoint} key={currentCity.name} className='cities__map map'  height={682}/>
                   </div>
                 </div> :
                 <MainPageEmpty city={currentCity.name}/>}

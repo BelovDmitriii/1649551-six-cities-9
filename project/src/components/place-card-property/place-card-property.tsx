@@ -12,34 +12,30 @@ import { toggleFavoriteAction } from '../../store/api-actions';
 import { redirectToRoute } from '../../store/action';
 
 type CardPropertyProps = {
-  offers: OfferType[];
   currentOffer: OfferType;
   reviews: ReviewType[];
   nearbyOffers: OfferType[];
-  selectedPoint:  OfferType | null;
 };
 
-function CardProperty({currentOffer,selectedPoint, offers, reviews, nearbyOffers}: CardPropertyProps):JSX.Element {
+function CardProperty({currentOffer, reviews, nearbyOffers}: CardPropertyProps):JSX.Element {
   const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
   const [isOfferFavorite, setToggleFavorite] = useState(currentOffer.isFavorite);
   const dispatch = useAppDispatch();
   const postFavoriteFlag = currentOffer.isFavorite ? 0 : 1;
+  const isAuth = authorizationStatus === AutorizationStatus.Auth;
+  const { id: currentId } = currentOffer;
 
   const handleFavoriteClick = () => {
-    if (authorizationStatus !== AutorizationStatus.Auth) {
+    if (!isAuth) {
       dispatch(redirectToRoute(AppRoute.SignIn));
     }
     dispatch(toggleFavoriteAction({
-      id: currentOffer.id,
+      id: currentId,
       flag: postFavoriteFlag,
     }));
 
     setToggleFavorite(!isOfferFavorite);
   };
-
-  const isAuth = authorizationStatus === AutorizationStatus.Auth;
-
-  const { id: currentId } = currentOffer;
 
   return (
     <section className="property">
@@ -136,9 +132,9 @@ function CardProperty({currentOffer,selectedPoint, offers, reviews, nearbyOffers
           </section>
         </div>
       </div>
-      <section className="property__map map" style={{margin: '0 auto', width: '80%', background:'none'}}>
-        <Map city={currentOffer.city} points={[...nearbyOffers, currentOffer]} selectedPoint={currentOffer} height={500}/>
-      </section>
+      <div style = {{ width:'80%', margin:'0 auto', marginBottom:'50px'}}>
+        <Map city={currentOffer.city} currentOffers={[...nearbyOffers, currentOffer]} selectedPoint={currentOffer} className={'property__map map'} height={579}/>
+      </div>
     </section>
   );
 }
