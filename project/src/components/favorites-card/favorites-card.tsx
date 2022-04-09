@@ -10,7 +10,7 @@ type FavoriteCardProps = {
   favoriteOffers: Favorite;
 }
 
-function FavoriteOffers({favoriteOffers}:FavoriteCardProps): JSX.Element {
+function FavoritesCard({favoriteOffers}:FavoriteCardProps): JSX.Element {
 
   const dispatch = useAppDispatch();
   const handleFavoriteClick = () => {
@@ -62,4 +62,4 @@ function FavoriteOffers({favoriteOffers}:FavoriteCardProps): JSX.Element {
   );
 }
 
-export default FavoriteOffers;
+export default FavoritesCard;

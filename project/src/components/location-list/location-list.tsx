@@ -7,7 +7,7 @@ function LocationList(): JSX.Element {
 
   return (
     <ul className="locations__list tabs__list">
-      {CITIES.map((item, id) => <LocationItem city={item} key={item.name} activeCity={currentCity} />)}
+      {CITIES.map((item) => <LocationItem city={item} key={item.name} activeCity={currentCity} />)}
     </ul>
   );
 }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import FavoriteOffers from '../favorite-card/favorites-card';
+import FavoritesCard from '../favorites-card/favorites-card';
 
 import { AppRoute } from '../../const';
 import { Favorite } from '../../types/favorite';
@@ -10,7 +10,7 @@ type FavoriteLocationProps = {
   city: string;
 }
 
-function FavoritesLocationCards({ locationOffers, city }: FavoriteLocationProps): JSX.Element {
+function FavoriteLocationCards({ locationOffers, city }: FavoriteLocationProps): JSX.Element {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -23,11 +23,11 @@ function FavoritesLocationCards({ locationOffers, city }: FavoriteLocationProps)
       <div className="favorites__places">
         {locationOffers.map((offer) => {
           const key = `${offer.id}`;
-          return <FavoriteOffers key={key} favoriteOffers={offer} />;
+          return <FavoritesCard key={key} favoriteOffers={offer} />;
         })}
       </div>
     </li>
   );
 }
 
-export default FavoritesLocationCards;
+export default FavoriteLocationCards;

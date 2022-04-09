@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AutorizationStatus, AppRoute } from '../../const';
+import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 
@@ -8,7 +8,7 @@ function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
   const userLogin = useAppSelector(({USER}) => USER.user);
-  const isAuth = authorizationStatus === AutorizationStatus.Auth;
+  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
 
   return (
     <nav className="header__nav">

@@ -1,18 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute, AutorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import PlaceCardScreen from '../place-card-screen/place-card-screen';
 import MainPage from '../main-page/main-page';
 import SignInPage from '../sign-in-page/sign-in-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import FavoritesScreen from '../favorites-screen/favorites-screen';
-import Spinner from '../spinner-component/spinner-component';
+import SpinnerComponent from '../spinner-component/spinner-component';
 import {useAppSelector} from '../../hooks';
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
 
-const isCheckedAuth = (authorizationStatus: AutorizationStatus): boolean =>
-  authorizationStatus === AutorizationStatus.Unknown;
+const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
+  authorizationStatus === AuthorizationStatus.Unknown;
 
 function App(): JSX.Element {
   const {authorizationStatus} = useAppSelector(({ USER }) => USER);
@@ -20,7 +20,7 @@ function App(): JSX.Element {
 
   if (isCheckedAuth(authorizationStatus) || !isOfferLoaded) {
     return (
-      <Spinner />
+      <SpinnerComponent />
     );
   }
 

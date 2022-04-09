@@ -1,4 +1,4 @@
-import ReviewItem from '../review-item/reviews-item';
+import ReviewItem from '../review-item/review-item';
 import { ReviewType } from '../../types/offer';
 import {lengthOfReviews, sortReviewsDate} from '../../utils';
 

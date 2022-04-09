@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offer';
-import {AppRoute, AutorizationStatus} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import {toggleFavoriteAction, fetchOfferAction, loadFavoriteAction} from '../../store/api-actions';
 import {ratingWidth} from '../../utils';
@@ -25,7 +25,7 @@ function PlaceCard (props: PlaceCardProps): JSX.Element {
 
   const handleFavoriteClick = () => {
 
-    if (authorizationStatus !== AutorizationStatus.Auth) {
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
       dispatch(redirectToRoute(AppRoute.SignIn));
     }
     dispatch(toggleFavoriteAction({

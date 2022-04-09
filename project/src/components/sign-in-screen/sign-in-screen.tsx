@@ -2,21 +2,20 @@ import {Link, Navigate} from 'react-router-dom';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { AppRoute, AutorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import {getUserLogin} from '../../store/user-process/user-process';
-
+//import {RANDOM_CITY} from '../../const';
 
 function SignInScreen(): JSX.Element {
-
-  const {authorizationStatus} = useAppSelector(({USER}) => USER);
   const {currentCity} = useAppSelector(({OFFERS}) => OFFERS);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
 
   const dispatch = useAppDispatch();
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  if (authorizationStatus === AutorizationStatus.Auth) {
+  if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Main} />;
   }
 

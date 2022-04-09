@@ -1,6 +1,6 @@
 import {OfferType} from '../../types/offer';
 import Header from '../header/header';
-import CardProperty from '../place-card-property/place-card-property';
+import PlaceCardProperty from '../place-card-property/place-card-property';
 import PlaceCardList from '../place-card-list/place-card-list';
 import {useState, useEffect} from 'react';
 import { useAppDispatch,useAppSelector} from '../../hooks';
@@ -45,7 +45,7 @@ function PlaceCardScreen(): JSX.Element {
       <Header />
       {currentOffer !==null && (
         <>
-          <CardProperty currentOffer={currentOffer}  reviews={reviews} nearbyOffers={nearbyOffers}/>
+          <PlaceCardProperty currentOffer={currentOffer}  reviews={reviews} nearbyOffers={nearbyOffers}/>
           <main className="page__main page__main--property">
             <div className="container">
               <section className="near-places places">

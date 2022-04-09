@@ -15,7 +15,7 @@ export const SortType = {
   TOP: 'Top rated first',
 };
 
-export const sortingType = Object.values(SortType);
+export const typesOfSort = Object.values(SortType);
 
 export const sortOffers = (offers: OfferType[], sortType: string) => {
   const sortedOffers = offers.slice();

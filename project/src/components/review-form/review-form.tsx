@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import {useAppDispatch} from '../../hooks';
 import {fetchSendReview} from '../../store/api-actions';
-import Rating from '../rating-component/rating-component';
+import RatingComponent from '../rating-component/rating-component';
 import { OfferType } from '../../types/offer';
 import { ReviewWithIdType } from '../../types/review';
 
@@ -51,7 +51,7 @@ function ReviewForm({currentOffer, currentId}:ReviewFormProps):JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
-      <Rating getRating={ratingChangeHandler} rating={rating}/>
+      <RatingComponent getRating={ratingChangeHandler} rating={rating}/>
       <textarea className="reviews__textarea form__textarea"
         onChange={commentChangeHandler}
         value = {comment}
