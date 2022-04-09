@@ -30,7 +30,10 @@ export const offersProcess = createSlice({
     setSortType: (state, action) => {
       state.sortType = action.payload;
     },
+    changeCity: (state, action) => {
+      state.currentCity = action.payload;
+    },
   },
 });
 
-export const {setCity, getOfferId, setSortType} = offersProcess.actions;
+export const {setCity, getOfferId, setSortType, changeCity} = offersProcess.actions;

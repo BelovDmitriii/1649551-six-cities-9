@@ -1,5 +1,5 @@
 import { City, OfferType, ReviewType } from './types/offer';
-import { MAX_REVIEWS_COUNT } from './const';
+import { MAX_REVIEWS_COUNT, CITIES } from './const';
 
 const PERCENT = 100;
 const MAX_RATING = 5;
@@ -46,4 +46,15 @@ export const sortReviewsDate = (array: ReviewType[]) => {
   }
   const newArray = array.slice();
   return newArray.sort((b, a) => Date.parse(a.date) - Date.parse(b.date));
+};
+
+export const randomInteger = (min: number, max: number) => {
+  const rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
+};
+
+export const getRandomCity = () => {
+  const indexOfArray = CITIES.length - 1;
+  const index = randomInteger(0, indexOfArray);
+  return CITIES[index];
 };
