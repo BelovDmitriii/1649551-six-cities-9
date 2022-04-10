@@ -10,6 +10,7 @@ import BookmarkButton from '../bookmark-button/bookmark-button';
 import {useState} from 'react';
 import { toggleFavoriteAction } from '../../store/api-actions';
 import { redirectToRoute } from '../../store/action';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 type PlaceCardPropertyProps = {
   currentOffer: OfferType;
@@ -18,7 +19,7 @@ type PlaceCardPropertyProps = {
 };
 
 function PlaceCardProperty({currentOffer, reviews, nearbyOffers}: PlaceCardPropertyProps):JSX.Element {
-  const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [isOfferFavorite, setToggleFavorite] = useState(currentOffer.isFavorite);
   const dispatch = useAppDispatch();
   const postFavoriteFlag = currentOffer.isFavorite ? 0 : 1;

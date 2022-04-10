@@ -10,13 +10,15 @@ import SpinnerComponent from '../spinner-component/spinner-component';
 import {useAppSelector} from '../../hooks';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getLoadOfferStatus } from '../../store/offers-data/selectors';
 
 const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
 
 function App(): JSX.Element {
-  const {authorizationStatus} = useAppSelector(({ USER }) => USER);
-  const {isOfferLoaded} = useAppSelector(({ DATA }) => DATA);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isOfferLoaded = useAppSelector(getLoadOfferStatus);
 
   if (isCheckedAuth(authorizationStatus) || !isOfferLoaded) {
     return (

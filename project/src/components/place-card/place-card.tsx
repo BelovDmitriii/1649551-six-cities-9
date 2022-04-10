@@ -7,6 +7,7 @@ import {ratingWidth} from '../../utils';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useState } from 'react';
 import { redirectToRoute } from '../../store/action';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 type PlaceCardProps = {
   offer: OfferType;
@@ -18,7 +19,7 @@ function PlaceCard (props: PlaceCardProps): JSX.Element {
   const {offer, onPlaceCardHover} = props;
   const {previewImage, title, price, rating, type, id, isPremium} = offer;
 
-  const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [isOfferFavorite, setToggleFavorite] = useState(offer.isFavorite);
   const dispatch = useAppDispatch();
   const postFavoriteFlag = offer.isFavorite ? 0 : 1;

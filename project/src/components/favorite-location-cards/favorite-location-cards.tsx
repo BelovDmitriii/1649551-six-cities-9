@@ -11,11 +11,12 @@ type FavoriteLocationProps = {
 }
 
 function FavoriteLocationCards({ locationOffers, city }: FavoriteLocationProps): JSX.Element {
+
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <Link className="locations__item-link" to={AppRoute.Main}>
+          <Link className="locations__item-link" to={AppRoute.Main} >
             <span>{city}</span>
           </Link>
         </div>

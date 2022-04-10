@@ -1,6 +1,7 @@
 import { MouseEvent } from 'react';
 import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../const';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 const ButtonSize = {
   SMALL: {
@@ -21,7 +22,7 @@ type BookmarkButtonProps = {
 }
 
 function BookmarkButton({ handleBookmarkButtonClick, isFavorite, isSmall, prefix }: BookmarkButtonProps): JSX.Element {
-  const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
 
   return (

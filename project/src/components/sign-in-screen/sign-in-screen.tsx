@@ -4,17 +4,19 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { getRandomCity } from '../../utils';
-import {setCity} from '../../store/offers-process/offers-process';
+import { setCity } from '../../store/offers-process/offers-process';
 import { getUserEmail } from '../../services/user-email';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import { getCurrentCity } from '../../store/offers-process/selectors';
 
 function SignInScreen(): JSX.Element {
-  const {currentCity} = useAppSelector(({OFFERS}) => OFFERS);
-  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const currentCity = useAppSelector(getCurrentCity);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  const [randomCity, setRandomCity] = useState(currentCity.name);
+  const [randomCity, setRandomCity] = useState(currentCity);
   useEffect(() => {
     const city = getRandomCity();
-    setRandomCity(city.name);
+    setRandomCity(city);
   }, []);
 
 
@@ -94,9 +96,9 @@ function SignInScreen(): JSX.Element {
         <section className="locations locations--login locations--current">
           <div className="locations__item">
             <Link to={AppRoute.Main} className="locations__item-link"
-              onClick={() => dispatch(setCity(currentCity))}
+              onClick={() => dispatch(setCity(randomCity))}
             >
-              <span>{randomCity}</span>
+              <span>{randomCity.name}</span>
             </Link>
           </div>
         </section>

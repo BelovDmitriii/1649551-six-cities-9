@@ -9,6 +9,7 @@ import {useParams} from 'react-router-dom';
 import {loadCurrentOfferAction, fetchReviewsAction, fetchNearbyOffersAction} from '../../store/api-actions';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Spinner from '../spinner-component/spinner-component';
+import { getCurrentOffer, getNearbyOffers, getOfferReviews, getCurrentOfferLoaded, getFavoriteOffers } from '../../store/offers-data/selectors';
 
 function PlaceCardScreen(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -19,7 +20,11 @@ function PlaceCardScreen(): JSX.Element {
     setSelectedPoint(offer);
   };
 
-  const { currentOffer, reviews, nearbyOffers, isCurrentOfferLoaded, favorites} = useAppSelector(({DATA}) => DATA);
+  const favorites = useAppSelector(getFavoriteOffers);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const reviews = useAppSelector(getOfferReviews);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+  const isCurrentOfferLoaded = useAppSelector(getCurrentOfferLoaded);
 
   const {id} = useParams<{id: string}>();
 
