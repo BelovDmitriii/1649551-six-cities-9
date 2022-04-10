@@ -106,7 +106,6 @@ export const CITIES = [
 ];
 
 export const INITIAL_CITY = CITIES[0];
-export const RANDOM_CITY = CITIES[getRandomNumber(0, CITIES.length)].name;
 
 export const MONTHS_NAMES = [
   'January',

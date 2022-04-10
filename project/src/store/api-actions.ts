@@ -12,6 +12,7 @@ import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handles';
 import {ReviewTypeData} from '../types/review';
 import { FavoriteFlagType } from '../types/favorite';
+import { saveUserEmail } from '../services/user-email';
 
 export const fetchOfferAction = createAsyncThunk(
   'data/fetchOffers',
@@ -66,10 +67,11 @@ export const loginAction = createAsyncThunk(
   'user/login',
   async ({login: email, password}: AuthData) => {
     try {
-      const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-      saveToken(token);
+      const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+      saveToken(data.token);
       store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
       store.dispatch(redirectToRoute(AppRoute.Main));
+      saveUserEmail(data.email);
     } catch (error) {
       errorHandle(error);
       store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));

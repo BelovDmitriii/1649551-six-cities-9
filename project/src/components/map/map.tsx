@@ -50,10 +50,13 @@ function Map({city, currentOffers, selectedPoint, className,height}:MapProps) {
       });
     }
     return () => {
-      markers.forEach((marker) => marker.remove());
-      markers.length = 0;
+      markers.forEach((marker) => {
+        if (map) {
+          marker.removeFrom(map);
+        }
+      });
     };
-  });
+  }, [map, currentOffers, selectedPoint, city]);
 
   return (
     <section
