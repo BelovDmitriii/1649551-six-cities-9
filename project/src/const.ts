@@ -1,9 +1,17 @@
-export const URL_MARKER_CURRENT = '../img/pin-active.svg';
-export const URL_MARKER_DEFAULT = '../img/pin.svg';
-export const ICON_WIDTH = 40;
-export const ICON_HEIGHT = 50;
-export const ANCHOR_RELATIVE_X = 20;
-export const ANCHOR_RELATIVE_Y = 40;
+export enum URL_MARKERS {
+  CURRENT = '../img/pin-active.svg',
+  DEFAULT = '../img/pin.svg',
+}
+
+export enum ICON {
+  WIDTH = 40,
+  HEIGHT = 50,
+}
+export enum ANCHOR_POSITION {
+  RELATIVE_X = 20,
+  RELATIVE_Y = 40,
+}
+
 export const RATING_VALUES = [5, 4, 3, 2, 1];
 
 export enum RatingName {
@@ -23,7 +31,7 @@ export enum AppRoute {
   NotFound = '/404',
 }
 
-export enum AutorizationStatus {
+export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NOAUTH',
   Unknown = 'UNKNOWN',
@@ -123,8 +131,7 @@ export enum CardTypes {
 }
 
 export enum NameSpace {
-  data = 'DATA',
-  offers = 'OFFERS',
-  user = 'USER',
-  favorites = 'FAVORITES',
+  Data = 'DATA',
+  Offers = 'OFFERS',
+  User = 'USER',
 }

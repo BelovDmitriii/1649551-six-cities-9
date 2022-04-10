@@ -5,13 +5,14 @@ import { OfferType, ReviewType } from '../types/offer';
 import { redirectToRoute } from './action';
 import { requireAuthorization } from './user-process/user-process';
 import {loadOffers, setNearbyOffers, loadReviews, loadCurrentOffer, setNewReview, fetchFavorites} from './offers-data/offers-data';
-import { APIRoute, AppRoute, AutorizationStatus } from '../const';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handles';
 import {ReviewTypeData} from '../types/review';
 import { FavoriteFlagType } from '../types/favorite';
+import { saveUserEmail } from '../services/user-email';
 
 export const fetchOfferAction = createAsyncThunk(
   'data/fetchOffers',
@@ -54,10 +55,10 @@ export const checkAuthAction = createAsyncThunk(
   async () => {
     try {
       await api.get(APIRoute.Login);
-      store.dispatch(requireAuthorization(AutorizationStatus.Auth));
+      store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
     } catch(error) {
       errorHandle(error);
-      store.dispatch(requireAuthorization(AutorizationStatus.NoAuth));
+      store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
   },
 );
@@ -66,13 +67,14 @@ export const loginAction = createAsyncThunk(
   'user/login',
   async ({login: email, password}: AuthData) => {
     try {
-      const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-      saveToken(token);
-      store.dispatch(requireAuthorization(AutorizationStatus.Auth));
+      const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+      saveToken(data.token);
+      store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
       store.dispatch(redirectToRoute(AppRoute.Main));
+      saveUserEmail(data.email);
     } catch (error) {
       errorHandle(error);
-      store.dispatch(requireAuthorization(AutorizationStatus.NoAuth));
+      store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
   },
 );
@@ -83,7 +85,7 @@ export const logoutAction = createAsyncThunk(
     try {
       await api.delete(APIRoute.Logout);
       dropToken();
-      store.dispatch(requireAuthorization(AutorizationStatus.NoAuth));
+      store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     } catch (error) {
       errorHandle(error);
     }

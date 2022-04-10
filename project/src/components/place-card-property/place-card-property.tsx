@@ -1,28 +1,29 @@
 import { OfferType, ReviewType } from '../../types/offer';
-import ReviewList from '../review-list/reviews-list';
-import ReviewForm from '../review-form/reviews-form';
+import ReviewList from '../review-list/review-list';
+import ReviewForm from '../review-form/review-form';
 import PlaceCardGallery from '../place-card-gallery/place-card-gallery';
 import Map from '../map/map';
 import {ratingWidth} from '../../utils';
-import { AppRoute, AutorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import {useState} from 'react';
 import { toggleFavoriteAction } from '../../store/api-actions';
 import { redirectToRoute } from '../../store/action';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
-type CardPropertyProps = {
+type PlaceCardPropertyProps = {
   currentOffer: OfferType;
   reviews: ReviewType[];
   nearbyOffers: OfferType[];
 };
 
-function CardProperty({currentOffer, reviews, nearbyOffers}: CardPropertyProps):JSX.Element {
-  const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
+function PlaceCardProperty({currentOffer, reviews, nearbyOffers}: PlaceCardPropertyProps):JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [isOfferFavorite, setToggleFavorite] = useState(currentOffer.isFavorite);
   const dispatch = useAppDispatch();
   const postFavoriteFlag = currentOffer.isFavorite ? 0 : 1;
-  const isAuth = authorizationStatus === AutorizationStatus.Auth;
+  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
   const { id: currentId } = currentOffer;
 
   const handleFavoriteClick = () => {
@@ -139,4 +140,4 @@ function CardProperty({currentOffer, reviews, nearbyOffers}: CardPropertyProps):
   );
 }
 
-export default CardProperty;
+export default PlaceCardProperty;

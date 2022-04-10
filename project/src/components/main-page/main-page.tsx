@@ -9,6 +9,8 @@ import PlacesSort from '../places-sort/places-sort';
 import { sortOffers, filterCity } from '../../utils';
 import Spinner from '../spinner-component/spinner-component';
 import MainPageEmpty from '../main-page-empty/main-page-empty';
+import { getCurrentCity, getSortType } from '../../store/offers-process/selectors';
+import { getOffer, getLoadOfferStatus } from '../../store/offers-data/selectors';
 
 function MainPage(): JSX.Element {
 
@@ -17,10 +19,10 @@ function MainPage(): JSX.Element {
     setSelectedPoint(offer);
   };
 
-  const offers = useAppSelector(({DATA}) => DATA.offers);
-  const currentCity = useAppSelector(({OFFERS}) => OFFERS.currentCity);
-  const sortType = useAppSelector(({OFFERS}) => OFFERS.sortType);
-  const {isOfferLoaded} = useAppSelector(({ DATA }) => DATA);
+  const offers = useAppSelector(getOffer);
+  const isOfferLoaded = useAppSelector(getLoadOfferStatus);
+  const currentCity = useAppSelector(getCurrentCity);
+  const sortType = useAppSelector(getSortType);
   const filteredOffers = filterCity( offers, currentCity);
   const sortedOffers = sortOffers(filteredOffers, sortType);
   const placesCount: number = filteredOffers.length;

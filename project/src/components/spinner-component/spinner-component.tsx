@@ -1,6 +1,6 @@
 import styles from './spinner.module.css';
 
-function Spinner(): JSX.Element {
+function SpinnerComponent(): JSX.Element {
   return (
     <div className={styles.container}>
       <div className={styles.spinner}>
@@ -19,6 +19,6 @@ function Spinner(): JSX.Element {
     </div>);
 }
 
-export default Spinner;
+export default SpinnerComponent;
 
 
